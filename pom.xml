@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>Core</artifactId>
+	<packaging>jar</packaging>
+	<!-- <version>0.0.2</version> -->
+	<version>0.0.4-SNAPSHOT-B${build.number}</version>
+	<name>Core</name>
+	<url>https://www.spigotmc.org/resources/core/</url>
+	<description>Core is a shared library for MobHunting and BagOfGold..</description>
+
+	<scm>
+		<connection>scm:svn:https://github.com/Rocologo/Core.git</connection>
+		<developerConnection>scm:git:git://github.com/Rocologo/Core.git</developerConnection>
+		<url>https://github.com/Rocologo/Core</url>
+	</scm>
+
+	<issueManagement>
+		<url>https://github.com/Rocologo/Core/issues</url>
+	</issueManagement>
+
+	<parent>
+		<groupId>one.lindegaard</groupId>
+		<artifactId>Main</artifactId>
+		<version>0.0.4</version>
+		<relativePath>../Main/pom.xml</relativePath>  
+	</parent>
+
+	<!-- ********************************************************************** -->
+	<!-- ******************************** Build ******************************* -->
+	<!-- ********************************************************************** -->
+	<build>
+		<sourceDirectory>${basedir}/src</sourceDirectory>
+		<defaultGoal>clean install</defaultGoal>
+		<resources>
+			<resource>
+				<targetPath>.</targetPath>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>plugin.yml</include>
+				</includes>
+			</resource>
+			<resource>
+				<targetPath>lang</targetPath>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources/lang</directory>
+			</resource>
+		</resources>
+		<directory>${basedir}/target</directory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${mavenCompilerPlugin.version}</version>
+				<configuration>
+					<source>${javacompiler.version}</source>
+					<target>${javacompiler.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.Maven.plugins</groupId>
+				<artifactId>Maven-jar-plugin</artifactId>
+				<version>${mavenJarPlugin.version}</version>
+				<configuration>
+					<archive>
+						<index>true</index>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Version>B${build.number}</Implementation-Version>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- ********************************************************************** -->
+	<!-- **************************** Dependencies **************************** -->
+	<!-- ********************************************************************** -->
+	<dependencies>
+
+		
+	</dependencies>
+
+</project>
