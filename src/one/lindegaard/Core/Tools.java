@@ -46,17 +46,49 @@ public class Tools {
 	}
 
 	public static boolean isSign(Block block) {
-		if (isMC113OrNewer())
-			return block.getType()==Material.SIGN || block.getType()==Material.WALL_SIGN;
+		if (isMC114OrNewer())
+			return block.getType() == Material.ACACIA_SIGN || block.getType() == Material.ACACIA_WALL_SIGN
+					|| block.getType() == Material.BIRCH_SIGN || block.getType() == Material.BIRCH_WALL_SIGN
+					|| block.getType() == Material.DARK_OAK_SIGN || block.getType() == Material.DARK_OAK_WALL_SIGN
+					|| block.getType() == Material.JUNGLE_SIGN || block.getType() == Material.JUNGLE_WALL_SIGN
+					|| block.getType() == Material.LEGACY_SIGN || block.getType() == Material.LEGACY_SIGN_POST
+					|| block.getType() == Material.LEGACY_WALL_SIGN || block.getType() == Material.OAK_SIGN
+					|| block.getType() == Material.OAK_WALL_SIGN || block.getType() == Material.SPRUCE_SIGN
+					|| block.getType() == Material.SPRUCE_WALL_SIGN;
+		else if (isMC113OrNewer())
+			return block.getType() == Material.LEGACY_SIGN || block.getType() == Material.LEGACY_SIGN_POST
+					|| block.getType() == Material.LEGACY_SIGN_POST;
 		else
-			return block.getType()==Material.LEGACY_SIGN || block.getType()==Material.LEGACY_SIGN_POST;
+			return block.getType() == Material.LEGACY_SIGN || block.getType() == Material.LEGACY_SIGN_POST;
+	}
+
+	public static boolean isWallSign(Block block) {
+		if (isMC114OrNewer())
+			return block.getType() == Material.ACACIA_WALL_SIGN || block.getType() == Material.BIRCH_WALL_SIGN
+					|| block.getType() == Material.DARK_OAK_WALL_SIGN || block.getType() == Material.JUNGLE_WALL_SIGN
+					|| block.getType() == Material.LEGACY_WALL_SIGN || block.getType() == Material.OAK_WALL_SIGN
+					|| block.getType() == Material.SPRUCE_WALL_SIGN;
+		else if (isMC113OrNewer())
+			return block.getType() == Material.LEGACY_SIGN;
+		else
+			return block.getType() == Material.LEGACY_SIGN;
 	}
 
 	public static boolean isSign(Material material) {
-		if (isMC113OrNewer())
-			return material==Material.SIGN || material==Material.WALL_SIGN;
+		if (isMC114OrNewer())
+			return material == Material.ACACIA_SIGN || material == Material.ACACIA_WALL_SIGN
+					|| material == Material.BIRCH_SIGN || material == Material.BIRCH_WALL_SIGN
+					|| material == Material.DARK_OAK_SIGN || material == Material.DARK_OAK_WALL_SIGN
+					|| material == Material.JUNGLE_SIGN || material == Material.JUNGLE_WALL_SIGN
+					|| material == Material.LEGACY_SIGN || material == Material.LEGACY_SIGN_POST
+					|| material == Material.LEGACY_WALL_SIGN || material == Material.OAK_SIGN
+					|| material == Material.OAK_WALL_SIGN || material == Material.SPRUCE_SIGN
+					|| material == Material.SPRUCE_WALL_SIGN;
+		else if (isMC113OrNewer())
+			return material == Material.LEGACY_SIGN || material == Material.LEGACY_SIGN_POST
+					|| material == Material.LEGACY_WALL_SIGN;
 		else
-			return material==Material.LEGACY_SIGN || material==Material.LEGACY_SIGN_POST;
+			return material == Material.LEGACY_SIGN || material == Material.LEGACY_SIGN_POST;
 	}
 
 	public static boolean isSkull(Material material) {
@@ -73,6 +105,10 @@ public class Tools {
 	// *******************************************************************
 	// Version detection
 	// *******************************************************************
+	public static boolean isMC114() {
+		return Bukkit.getBukkitVersion().contains("1.14");
+	}
+
 	public static boolean isMC113() {
 		return Bukkit.getBukkitVersion().contains("1.13");
 	}
@@ -95,6 +131,14 @@ public class Tools {
 
 	public static boolean isMC18() {
 		return Bukkit.getBukkitVersion().contains("1.8");
+	}
+
+	public static boolean isMC114OrNewer() {
+		if (isMC114())
+			return true;
+		else if (isMC113() || isMC112() || isMC111() || isMC110() || isMC19() || isMC18())
+			return false;
+		return true;
 	}
 
 	public static boolean isMC113OrNewer() {
