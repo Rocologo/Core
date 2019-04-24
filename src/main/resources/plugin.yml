@@ -1,0 +1,10 @@
+name: BagOfGoldCore
+main: one.lindegaard.Core.BagOfGoldCore
+version: ${version}
+description: BagOfGoldCore is an Core Library for Rocologos plugins (BagOfGold and MobHunting). 
+dev-url: http://dev.bukkit.org/server-mods/bagofgoldcore/
+author: Rocologo
+depend: []
+loadbefore: [bagofgold, MobHunting]
+softdepend: []
+api-version: 1.13
