@@ -2,6 +2,7 @@ package one.lindegaard.Core;
 
 import java.io.File;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import one.lindegaard.Core.config.ConfigManager;
@@ -27,6 +28,13 @@ public class BagOfGoldCore extends JavaPlugin {
 
 	private boolean mInitialized = false;
 
+	public static void startUp() {
+		Bukkit.getConsoleSender().sendMessage("Loading BagOfGoldcore Library Plugin");
+		Class<BagOfGoldCore> cl = one.lindegaard.Core.BagOfGoldCore.class;
+		org.bukkit.plugin.java.JavaPlugin jv = org.bukkit.plugin.java.JavaPlugin.getPlugin(cl); 
+		Bukkit.getServer().getPluginManager().enablePlugin(jv);
+	}
+	
 	@Override
 	public void onLoad() {
 	}
