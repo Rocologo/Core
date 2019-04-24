@@ -33,6 +33,10 @@ public class Materials {
 	public static boolean isUnarmed(ItemStack item) {
 		return (item == null || item.getType() == Material.AIR);
 	}
+	
+	public static boolean isTrident(ItemStack item) {
+		return item != null && (item.getType() == Material.TRIDENT);
+	}
 
 	public static boolean isSign(Block block) {
 		if (Servers.isMC114OrNewer())
