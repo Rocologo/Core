@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit; 
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -91,5 +92,15 @@ public class Tools {
 		}
 		return Collections.emptyList();
 	}
+	
+	public static Player getOnlinePlayer(OfflinePlayer offlinePlayer) {
+		for (Player player : getOnlinePlayers()) {
+			if (player.getName().equals(offlinePlayer.getName()))
+				return player;
+		}
+		return null;
+	}
+	
+	
 	
 }
