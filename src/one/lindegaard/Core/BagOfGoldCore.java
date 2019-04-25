@@ -3,7 +3,8 @@ package one.lindegaard.Core;
 import java.io.File;
 
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.Plugin;
+//import org.bukkit.plugin.java.JavaPlugin;
 
 import one.lindegaard.Core.config.ConfigManager;
 import one.lindegaard.Core.rewards.BagOfGoldItems;
@@ -13,10 +14,17 @@ import one.lindegaard.Core.storage.IDataStore;
 import one.lindegaard.Core.storage.MySQLDataStore;
 import one.lindegaard.Core.storage.SQLiteDataStore;
 
-public class BagOfGoldCore extends JavaPlugin {
+public class BagOfGoldCore {
 
+	private static Plugin plugin;
 	private static BagOfGoldCore instance;
-	private File mFile = new File(getDataFolder(), "config.yml");
+	
+    public BagOfGoldCore(Plugin plugin) {
+		this.plugin=plugin;
+		onEnable();
+	}
+	
+	private File mFile = new File("BagOfGoldCore/", "config.yml");
 
 	private ConfigManager mConfig;
 	private Messages mMessages;
@@ -28,20 +36,20 @@ public class BagOfGoldCore extends JavaPlugin {
 
 	private boolean mInitialized = false;
 
-	public static void startUp() {
-		Bukkit.getConsoleSender().sendMessage("Loading BagOfGoldcore Library Plugin");
-		Class<BagOfGoldCore> cl = one.lindegaard.Core.BagOfGoldCore.class;
-		org.bukkit.plugin.java.JavaPlugin jv = org.bukkit.plugin.java.JavaPlugin.getPlugin(cl); 
-		Bukkit.getServer().getPluginManager().enablePlugin(jv);
-	}
+	//public static void startUp() {
+	//	Bukkit.getConsoleSender().sendMessage("Loading BagOfGoldcore Library Plugin");
+	//	Class<BagOfGoldCore> cl = one.lindegaard.Core.BagOfGoldCore.class;
+	//	BagOfGoldCore jv = org.bukkit.plugin.java.JavaPlugin.getPlugin(cl); 
+	//	Bukkit.getServer().getPluginManager().enablePlugin(jv);
+	//}
 	
-	@Override
-	public void onLoad() {
-	}
+	//@Override
+	//public void onLoad() {
+	//}
 
-	@Override
-	public void onEnable() {
-
+	//@Override
+    public void onEnable() {
+    	
 		instance = this;
 
 		mMessages = new Messages(this);
@@ -71,7 +79,7 @@ public class BagOfGoldCore extends JavaPlugin {
 			} catch (DataStoreException e1) {
 				e1.printStackTrace();
 			}
-			setEnabled(false);
+			//setEnabled(false);
 			return;
 		}
 
@@ -83,7 +91,7 @@ public class BagOfGoldCore extends JavaPlugin {
 
 	}
 
-	@Override
+	//@Override
 	public void onDisable() {
 		if (!mInitialized)
 			return;
