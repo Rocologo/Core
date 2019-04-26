@@ -46,8 +46,8 @@ public class SQLiteDataStore extends DatabaseDataStore {
 			break;
 		case INSERT_PLAYER_SETTINGS:
 			mInsertPlayerSettings = connection.prepareStatement(
-					"INSERT OR REPLACE INTO mh_PlayerSettings (UUID,NAME,LAST_WORLDGRP,LEARNING_MODE,MUTE_MODE) "
-							+ "VALUES(?,?,?,?,?);");
+					"INSERT OR REPLACE INTO mh_PlayerSettings (UUID,NAME,LAST_WORLDGRP,LEARNING_MODE,MUTE_MODE,TEXTURE,SIGNATURE) "
+							+ "VALUES(?,?,?,?,?,?,?);");
 			break;
 		}
 	}
@@ -68,6 +68,8 @@ public class SQLiteDataStore extends DatabaseDataStore {
 				+ " LAST_WORLDGRP NOT NULL DEFAULT 'default'," //
 				+ " LEARNING_MODE INTEGER NOT NULL DEFAULT " + lm + "," //
 				+ " MUTE_MODE INTEGER NOT NULL DEFAULT 0," //
+				+ " TEXTURE TEXT, " //
+				+ " SIGNATURE TEXT, " //
 				+ " UNIQUE(UUID))");
 
 		create.close();

@@ -5,9 +5,9 @@ import org.bukkit.OfflinePlayer;
 public class PlayerSettings {
 	private OfflinePlayer player;
 	private int playerId;
+	private String lastKnownWorldGrp;
 	private boolean learning_mode = false;
 	private boolean mute = false;
-	private String lastKnownWorldGrp;
 	private String texture;
 	private String signature;
 
@@ -23,6 +23,15 @@ public class PlayerSettings {
 		this.setLastKnownWorldGrp(lastKnownWorldGrp);
 		this.setLearningMode(learning_mode);
 		this.setMuteMode(mute);
+	}
+	
+	public PlayerSettings(OfflinePlayer player, String lastKnownWorldGrp, boolean learning_mode, boolean mute, String texture,String signature) {
+		this.player = player;
+		this.setLastKnownWorldGrp(lastKnownWorldGrp);
+		this.setLearningMode(learning_mode);
+		this.setMuteMode(mute);
+		this.setTexture(texture);
+		this.setSignature(signature);
 	}
 	
 	public PlayerSettings(OfflinePlayer player, PlayerSettings ps) {

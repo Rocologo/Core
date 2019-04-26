@@ -171,7 +171,7 @@ public abstract class DatabaseDataStore implements IDataStore {
 			result = mGetPlayerSettings.executeQuery();
 			if (result.next()) {
 				PlayerSettings ps = new PlayerSettings(offlinePlayer, result.getString("LAST_WORLDGRP"),
-						result.getBoolean("LEARNING_MODE"), result.getBoolean("MUTE_MODE"));
+						result.getBoolean("LEARNING_MODE"), result.getBoolean("MUTE_MODE"), result.getString("TEXTURE"), result.getString("SIGNATURE"));
 				result.close();
 				//plugin.getMessages().debug("Reading from Database: %s", ps.toString());
 				mGetPlayerSettings.close();
@@ -201,6 +201,8 @@ public abstract class DatabaseDataStore implements IDataStore {
 				mInsertPlayerSettings.setString(3, playerSettings.getLastKnownWorldGrp());
 				mInsertPlayerSettings.setInt(4, playerSettings.isLearningMode() ? 1 : 0);
 				mInsertPlayerSettings.setInt(5, playerSettings.isMuted() ? 1 : 0);
+				mInsertPlayerSettings.setString(6, playerSettings.getTexture());
+				mInsertPlayerSettings.setString(7, playerSettings.getSignature());
 				mInsertPlayerSettings.addBatch();
 				mInsertPlayerSettings.executeBatch();
 				mInsertPlayerSettings.close();
@@ -229,6 +231,8 @@ public abstract class DatabaseDataStore implements IDataStore {
 					mInsertPlayerSettings.setString(3, playerSettings.getLastKnownWorldGrp());
 					mInsertPlayerSettings.setInt(4, playerSettings.isLearningMode() ? 1 : 0);
 					mInsertPlayerSettings.setInt(5, playerSettings.isMuted() ? 1 : 0);
+					mInsertPlayerSettings.setString(6, playerSettings.getTexture());
+					mInsertPlayerSettings.setString(7, playerSettings.getSignature());
 					mInsertPlayerSettings.addBatch();
 				}
 				mInsertPlayerSettings.executeBatch();

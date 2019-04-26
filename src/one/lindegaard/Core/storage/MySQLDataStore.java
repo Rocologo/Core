@@ -61,8 +61,8 @@ public class MySQLDataStore extends DatabaseDataStore {
 			break;
 		case INSERT_PLAYER_SETTINGS:
 			mInsertPlayerSettings = connection.prepareStatement(
-					"REPLACE INTO mh_PlayerSettings (UUID,NAME,LAST_WORLDGRP,LEARNING_MODE,MUTE_MODE) "
-							+ "VALUES(?,?,?,?,?);");
+					"REPLACE INTO mh_PlayerSettings (UUID,NAME,LAST_WORLDGRP,LEARNING_MODE,MUTE_MODE,TEXTURE,SIGNATURE) "
+							+ "VALUES(?,?,?,?,?,?,?);");
 			break;
 		}
 
@@ -85,6 +85,8 @@ public class MySQLDataStore extends DatabaseDataStore {
 				+ " LAST_WORLDGRP VARCHAR(20) NOT NULL DEFAULT 'default'," //
 				+ " LEARNING_MODE INTEGER NOT NULL DEFAULT " + lm + ","//
 				+ " MUTE_MODE INTEGER NOT NULL DEFAULT 0,"//
+				+ " TEXTURE VARCHAR(2000),"//
+				+ " SIGNATURE VARCHAR(2000),"//
 				+ " PRIMARY KEY (UUID))");
 		connection.commit();
 
