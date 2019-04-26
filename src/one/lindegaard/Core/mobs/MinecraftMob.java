@@ -1,7 +1,10 @@
 package one.lindegaard.Core.mobs;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -10,9 +13,11 @@ import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Zombie;
 import org.bukkit.entity.ZombieVillager;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import one.lindegaard.Core.BagOfGoldCore;
+import one.lindegaard.Core.Tools;
 import one.lindegaard.Core.Server.Servers;
 import one.lindegaard.Core.rewards.CustomItems;
 import one.lindegaard.Core.rewards.Reward;
@@ -612,24 +617,24 @@ public enum MinecraftMob {
 	}
 
 	// TODO: HEADS ??? and is this in CustomItems???
-	public ItemStack getCustomHead(BagOfGoldCore plugin, String name, int amount, double money) {
+	public ItemStack getCustomHead(String name, int amount, double money) {
 		ItemStack skull;
 		switch (this) {
 		case Skeleton:
 			skull = new ItemStack(Material.PLAYER_HEAD, amount, (short) 0);
-			skull = plugin.getBagOfGoldItems().setDisplayNameAndHiddenLores(skull, new Reward(getFriendlyName(), money,
+			skull = setDisplayNameAndHiddenLores(skull, new Reward(getFriendlyName(), money,
 					UUID.fromString(Reward.MH_REWARD_KILLED_UUID), UUID.randomUUID(), getPlayerUUID()));
 			break;
 
 		case WitherSkeleton:
 			skull = new ItemStack(Material.PLAYER_HEAD, amount, (short) 1);
-			skull = plugin.getBagOfGoldItems().setDisplayNameAndHiddenLores(skull, new Reward(getFriendlyName(), money,
+			skull = setDisplayNameAndHiddenLores(skull, new Reward(getFriendlyName(), money,
 					UUID.fromString(Reward.MH_REWARD_KILLED_UUID), UUID.randomUUID(), getPlayerUUID()));
 			break;
 
 		case Zombie:
 			skull = new ItemStack(Material.PLAYER_HEAD, amount, (short) 2);
-			skull = plugin.getBagOfGoldItems().setDisplayNameAndHiddenLores(skull, new Reward(getFriendlyName(), money,
+			skull = setDisplayNameAndHiddenLores(skull, new Reward(getFriendlyName(), money,
 					UUID.fromString(Reward.MH_REWARD_KILLED_UUID), UUID.randomUUID(), getPlayerUUID()));
 			break;
 
@@ -642,23 +647,59 @@ public enum MinecraftMob {
 
 		case Creeper:
 			skull = new ItemStack(Material.PLAYER_HEAD, amount, (short) 4);
-			skull = plugin.getBagOfGoldItems().setDisplayNameAndHiddenLores(skull, new Reward(getFriendlyName(), money,
+			skull = setDisplayNameAndHiddenLores(skull, new Reward(getFriendlyName(), money,
 					UUID.fromString(Reward.MH_REWARD_KILLED_UUID), UUID.randomUUID(), getPlayerUUID()));
 			break;
 
 		case EnderDragon:
 			skull = new ItemStack(Material.PLAYER_HEAD, amount, (short) 5);
-			skull = plugin.getBagOfGoldItems().setDisplayNameAndHiddenLores(skull, new Reward(getFriendlyName(), money,
+			skull = setDisplayNameAndHiddenLores(skull, new Reward(getFriendlyName(), money,
 					UUID.fromString(Reward.MH_REWARD_KILLED_UUID), UUID.randomUUID(), getPlayerUUID()));
 			break;
 
 		default:
-			ItemStack is = new ItemStack(new CustomItems(plugin).getCustomtexture(
+			ItemStack is = new ItemStack(new CustomItems(BagOfGoldCore.getInstance()).getCustomtexture(
 					UUID.fromString(Reward.MH_REWARD_KILLED_UUID), getFriendlyName(), mTextureValue, mTextureSignature,
 					money, UUID.randomUUID(), getPlayerUUID()));
 			is.setAmount(amount);
 			return is;
 		}
+		return skull;
+	}
+
+	/**
+	 * setDisplayNameAndHiddenLores: add the Display name and the (hidden) Lores.
+	 * The lores identifies the reward and contain secret information.
+	 * 
+	 * @param skull  - The base itemStack without the information.
+	 * @param reward - The reward information is added to the ItemStack
+	 * @return the updated ItemStack.
+	 */
+	public ItemStack setDisplayNameAndHiddenLores(ItemStack skull, Reward reward) {
+		ItemMeta skullMeta = skull.getItemMeta();
+		if (reward.getRewardType().equals(UUID.fromString(Reward.MH_REWARD_BAG_OF_GOLD_UUID)))
+			skullMeta.setLore(new ArrayList<String>(Arrays.asList("Hidden:" + reward.getDisplayname(),
+					"Hidden:" + reward.getMoney(), "Hidden:" + reward.getRewardType(),
+					reward.getMoney() == 0 ? "Hidden:" : "Hidden:" + UUID.randomUUID(),
+					"Hidden:" + reward.getSkinUUID())));
+		else
+			skullMeta.setLore(new ArrayList<String>(Arrays.asList("Hidden:" + reward.getDisplayname(),
+					"Hidden:" + reward.getMoney(), "Hidden:" + reward.getRewardType(),
+					reward.getMoney() == 0 ? "Hidden:" : "Hidden:" + UUID.randomUUID(),
+					"Hidden:" + reward.getSkinUUID(),
+					BagOfGoldCore.getInstance().getMessages().getString("bagofgold.reward.name"))));
+
+		if (reward.getMoney() == 0)
+			skullMeta.setDisplayName(
+					ChatColor.valueOf(BagOfGoldCore.getInstance().getConfigManager().dropMoneyOnGroundTextColor)
+							+ reward.getDisplayname());
+		else
+			skullMeta.setDisplayName(ChatColor
+					.valueOf(BagOfGoldCore.getInstance().getConfigManager().dropMoneyOnGroundTextColor)
+					+ (BagOfGoldCore.getInstance().getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("ITEM")
+							? Tools.format(reward.getMoney())
+							: reward.getDisplayname() + " (" + Tools.format(reward.getMoney()) + ")"));
+		skull.setItemMeta(skullMeta);
 		return skull;
 	}
 
