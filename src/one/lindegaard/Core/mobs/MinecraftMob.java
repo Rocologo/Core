@@ -27,6 +27,34 @@ public enum MinecraftMob {
 	// http://heads.freshcoal.com/index.php
 
 	// ******************************************************************
+	// Minecraft 1.14
+	// ******************************************************************
+	// Cat
+	Cat("Cat", "Cat", "e5131742-ba24-4e32-a355-0aeda76425c7", "Cat",
+			"eyJ0aW1lc3RhbXAiOjE1NTYyODM0NjEyMDgsInByb2ZpbGVJZCI6IjVkMjRiYTBiMjg4YzQyOTM4YmExMGVjOTkwNjRkMjU5IiwicHJvZmlsZU5hbWUiOiIxbnYzbnQxdjN0NGwzbnQiLCJzaWduYXR1cmVSZXF1aXJlZCI6dHJ1ZSwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzk4Y2FkNGI4ZDZlZTJhYmQwMWY5NjI5NzUxMjUxMGU3NmU0MGZjYmM5NDdjYWRmYzZlM2ExOWEzMzRjMmM0Y2IifX19",
+			"WhDAy8u1E15TO9fK9EFTjiJCfIht58/DYaH86us8CGfVjhE1iPgjVWQ9CxCvtk64x/aQGnfKNFlhiE12h5wo3aiy3clpolkWc0xj8fTaZdfQ7wE6HgYH0hTvf/s1FB3cDqfu9wZ1gvqanTN5D1duiZoPpyyVTH3hTYCKE/bhBECR4vdT5fvQuAdiOCyaauQC7gSvbCnDCXgcRpXgrWc2VuaKJYWMZloq+cGg2aPnz3Pl/yI6c6L7yHVz9Qc1wa9KYo017lD4Bp887WTCtNFHi1GJHrZnpsmhu5BbbqeZPwkWT3wyJCdl4oZLwqAIOyyvjunQKCVqHCKAmGS9X41qTBNWPYjUVzXqi91VdoOO5BF8NldmrdiCPga/PhpXYfLQRxsD5fZqo46NG/7sLf4VnWelhkpuD2tFuw0LI3Ss1oQAhvQX6JgTVc/OjAvQWE8F1Xp+gQMKGjVFHI4UP/MSDmdfoaxeuX6aY4aVWFO8asprT/aOAeLSGI/ZIKf0frZP/S2wigkNnSl6hHZXnoIefHnsyaa3zXk+dxGuuxdyFm6aom1SMfbQIocWHOLhvwgcTkRTHzm2CYzjwv9nONLpVstLSQrG/gtdyKYRPQI9N9kSfUnXhnvlnP6UR1IFlSuGtVCY3YrskChRYv0FyKFIZJ311QGejq/h9eMbZOjjDl4="),
+
+	// Fox
+	Fox("Fox", "Fox", "b1a4f56a-e6c6-4017-976f-1df747b5b4e3", "Fox",
+			"eyJ0aW1lc3RhbXAiOjE1NTYyODM2Mjk0MTksInByb2ZpbGVJZCI6ImIwZDRiMjhiYzFkNzQ4ODlhZjBlODY2MWNlZTk2YWFiIiwicHJvZmlsZU5hbWUiOiJ4RmFpaUxlUiIsInNpZ25hdHVyZVJlcXVpcmVkIjp0cnVlLCJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjAwYzQ2ZDIxZTY5ZGM5MTBhOWM1ODc4MjliY2JkYzEyNDc4NDJlZTdkNmQzZTQ5Y2M1Y2U2NTI5ZTI3MWI3ZSJ9fX0=",
+			"UAFsPkIraLlaOfO2V1sd0xx8eaFtzoNue8sJaCCNzDVXDyuHg4CAAMheCApreStf4WssE3NHhI3JS5f2Nyqrb/5kxaA27J0ZT8UZzT89G6Wd+8L1M3O7WhCtFNmpSdXWvwBx7M6gncck/6ooqPlKutEAD9crYu8vDdv/oczkY7e95fEipBG4q1EJmlXovKVaEd6DJrsLxJLpksUR/1RJMu0F5kxjHPjINimg0cUtLmA799qS1D2VmErHCtWqqqYhu7heu7LVNQwd9olz3fQ9gXOmEkgdYZJIw/qdgYNMVc029Y2cgLvjHisoD4Z+uZjF9m0YmOkudDIQVAW1aXNhQklqMWMeXz2kGVFXvj9QAVnWUtp2SEAY6waAf9gIDOhYoHQteix088vsHr5PeH1dNWee0oU5rkJ9kWZKfNCSsBIZhmivFltFe/Ce65GQdO4oMobFUEc2n9aJ/0aH6LtYpwS3thZt3CrxIOSuGmJCNHj/nMwoEd+VJ3iGwQ6esEcFMF3AdD7WsUSz2rIzah23nonzXNFAzupfAoz3AYe2h4TYbpbGOleRjlbt+zKSsfhC6s216GhOkF2CTkEcIS+IIRG+xqjWPDSlXetAZxHChpWzDAC45cALdBXdvmoQPkCRZgq8hfIbGqWORTuAin3I58FnmUfEN8iYvxmOFSpNDXQ="),
+
+	// Panda
+	Panda("Panda", "Panda", "22b8983d-65ad-4be7-8545-5c35a1ae641a", "Panda",
+			"eyJ0aW1lc3RhbXAiOjE1NTYyODM3NjQyNDUsInByb2ZpbGVJZCI6IjkxZmUxOTY4N2M5MDQ2NTZhYTFmYzA1OTg2ZGQzZmU3IiwicHJvZmlsZU5hbWUiOiJoaGphYnJpcyIsInNpZ25hdHVyZVJlcXVpcmVkIjp0cnVlLCJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjVkZWEzYTgyYjlmYWZjOGFmODllMjI5YzM1NzE5MzZjZjI2Njk2ZmEwYWViY2VlNTMwOWY4MTg4OTBmNjhmOCJ9fX0=",
+			"gokPLaG3DDrPkyNotKKDQQWJDnF78bFv+5k7PSk0sKZn+0D4yJGGjsGnh0Jc+4Q3/XD0iAlwLRJK+uD0h8aBv++oQBl5tP07rznI/hlKswcUwrX0RdUvVVh/l7iyi7SY8B6yFribLPQRsP9esFR4saNV5YNUxzI/pjMtydTHsHpcc8z4wH6XXJDL4YS5c0LaxggiKeSk1giGf69HycO4J/y+XHX/tSDdxNGSS92v9hqjZMUJrLjgS52VtLPCYIK+9k29NMdilpeIUDMqSl0CFJOkOm7gcHjLB4XakolWEnDQKpLVS7kg+Ql6hxTAzl7pEcCITP3CG2S/AtaCwf3FH8i/vRMOMnph+BghgOctnd2MadqQQmjqrbrB7d7h2Ymx3gVTSQ4R7zMSlG6NJ8pb8GEx0V1aY+Ay/SaSzt+47xRwj9hdGP7fVIdg8A+BGA9DGfJuhMRkbXGiialDnZnSZPbpaDguiWf0gq6jHOiyBApCQmVTdxQnEh7dywWPAEQnSdpWJyE+/YaoPdM7uxzVf6/foQi8opMapyHowoivfhKGw0todHhiwux+EuerVW8DKK+Hou1SkuMXVa5n559aWNp1tJkEET6QGOCmxXa49xUVQ5q4WA9mE32tp1VKg16JV7KQY3cHBNzt6kVN5Tt4JvO5bW4BAvEDOIiarEoJxaU="),
+
+	// Pillager
+	Pillager("Pillager", "Pillager", "20690f3a-9c40-4b28-9873-405fe10bc05c", "Pillager",
+			"eyJ0aW1lc3RhbXAiOjE1NTYyODQwMzYwNjAsInByb2ZpbGVJZCI6IjVkODgxNDRhMzhjYzRkZWVhODA3MzYwODc2YzIxYzU4IiwicHJvZmlsZU5hbWUiOiJSZW1WTiIsInNpZ25hdHVyZVJlcXVpcmVkIjp0cnVlLCJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjM1NTBmODlhZWE4ODY2NTgwNGMyZmQxYjY2ODI5MzBjMjMyMzMxODRmZGMwNjA5OTEzMDU3MThlZDY2MDU5NyJ9fX0=",
+			"dreirbEgPrTHGgHbj9QkPerPuQwtGA15mDZh3Y/GM7u5V+P8tmUegUFF5SUSSvVrE1MmkAM5L8LD5JY3XzM1gSlGYyo4flgx+yRIQfuqx0O6WO5ZueJvZGoVza1tl29ixmqsJzuMURUztQaoGNLjDYhREYX8kwfdEDAnnaTIMrTFIfCAYSSE1oP13MlM0+1srkXXgW/eTIrXGv5d5rVewbqFjNQX151crbQmq/GAA5dyL4q+9g9EOLrMorfLngIhkmLYRhhYSjt1/PoFAHqay+cyuTmdlORGeC74tKydI/KfuSuRiixinuSLkoCMyfBrwZyDTDjM800bbT+pAL1o15Xp0sa8GST+2cwYWXIanxs7545oFvKkHOw7Mpsa8Wvp/afo3YJzdKcdgO1pajSJ4drdtmmSSO4QpwFpFGMwivArZVo+JTs1pbvF5D7HqC29ziQY1Cg+WDQ8auhFWIpmEOYBFnCBIM9TAwlaoAMBPqzobgqs45e2/t2k5geCsSG+HkWrSS63lzU7x+Zg4EATcDoyKL6QAndiEUa8QwdRlwnFJvn3lHjRE+TU9+SgnnLK1OOK273atr6W8BgcwXumoGGng9gI3GyiErrjypBTpc4L2QUkZMN8L1PmXvmv+zMNuoBSM4xINpVqkCBZiAyWQmEmIN7yn78mSiIoJ2Sg0Qg="),
+
+	// Ravager
+	Ravager("Ravager", "Ravager", "64107d7a-6367-4648-b780-bfad506d5712", "Ravager",
+			"eyJ0aW1lc3RhbXAiOjE1NTYyODQ3MTA1MjgsInByb2ZpbGVJZCI6IjgyYzYwNmM1YzY1MjRiNzk4YjkxYTEyZDNhNjE2OTc3IiwicHJvZmlsZU5hbWUiOiJOb3ROb3RvcmlvdXNOZW1vIiwic2lnbmF0dXJlUmVxdWlyZWQiOnRydWUsInRleHR1cmVzIjp7IlNLSU4iOnsidXJsIjoiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS8zOTFmYjY0YTA1ODYwMGY1YTU3OWNmMTEzZDBkZDZjYTFjMDZkMjg0Mzg5ZDQzZGJmZjQ1NzNiMjkxM2IzNTE0In19fQ==",
+			"p0UIaa0LpMDaW0pcaWZ8LS66AwKM6vT9TIOxqLMrjZ0lMrwbN3FteAyWLNy671gN9/urG7Ms+pJkO2pQWRl8N8JGz7xJ0THgi/6W6amuyUogXGYWiiU1hbLl4ljZArj1fG6ESlJoMoJyXmfZHDqkvKgNK1j2Q33XCgHgw1rE+K0/YuBqYpsFGEbz46Q/eq6ab+dDFrXeV1apMiJmSKWkoQD0Dm7lWLuD9jjsEfvvpIMGjLYWGArVh0Iq6qdJkrGNx831el3fut0seUrcHqyWJCCCUt0PE4+2Oa8APKmd0J/udEyjRqANTgds8MS3ZGXm24iVpHMmH1fxv8JlZCcTA4n/tzou82Z0Nuiaq4NM7qWBDzbNMtRq2OfcDbpOdIZt0/Ub0J1L4iwdoW4L+SShAr7OWM6+LmKWLPFSVmlqP8cVQjHyC1gGVyKvcKyHYetGk+4pO2+2m5tLzdytwoG8cP0MubLWxq3omijGdJm4uBHphI8YYi2Dkhtzoq2CbxsTuVD1xOjNirKQTBvbQGPIbCn4TwKGv9qfHrP2AWoHLG8zP3p1dAxXoKZv4WMJUz6DEZJLRV9epe0fd/rnAXmPZkdR4FHHTdMcg7ekzGQKkDZGeeAxBA+brKEm8LjTuPKZv4HBvNONi2xTQsXZ3yQ7LZRLJuKomD7DViTh+1GNrD4="),
+
+	// ******************************************************************
 	// Minecraft 1.13
 	// ******************************************************************
 	// Dolphin
@@ -467,26 +495,33 @@ public enum MinecraftMob {
 			else if (this == Stray)
 				return entity instanceof Skeleton && (((Skeleton) entity).getSkeletonType() == SkeletonType.STRAY);
 			else if (this == Husk)
-				return entity instanceof Zombie && ((Zombie) entity).getVillagerProfession() == org.bukkit.entity.Villager.Profession.valueOf("HUSK");
-		
-			//else if (this == Villager)
-			//	return entity instanceof org.bukkit.entity.Villager
-			//			&& (((org.bukkit.entity.Villager) entity).getProfession() == Profession.NORMAL);
-			//else if (this == Butcher)
-			//	return entity instanceof org.bukkit.entity.Villager
-			//			&& (((org.bukkit.entity.Villager) entity).getProfession() == Profession.BUTCHER);
-			//else if (this == Blacksmith)
-			//	return entity instanceof org.bukkit.entity.Villager
-			//			&& (((org.bukkit.entity.Villager) entity).getProfession() == Profession.BLACKSMITH);
-			//else if (this == Priest)
-			//	return entity instanceof org.bukkit.entity.Villager
-			//			&& (((org.bukkit.entity.Villager) entity).getProfession() == Profession.PRIEST);
-			//else if (this == Farmer)
-			//	return entity instanceof org.bukkit.entity.Villager
-			//			&& (((org.bukkit.entity.Villager) entity).getProfession() == Profession.FARMER);
-			//else if (this == Librarian)
-			//	return entity instanceof org.bukkit.entity.Villager
-			//			&& (((org.bukkit.entity.Villager) entity).getProfession() == Profession.LIBRARIAN);
+				return entity instanceof Zombie && ((Zombie) entity)
+						.getVillagerProfession() == org.bukkit.entity.Villager.Profession.valueOf("HUSK");
+
+		// else if (this == Villager)
+		// return entity instanceof org.bukkit.entity.Villager
+		// && (((org.bukkit.entity.Villager) entity).getProfession() ==
+		// Profession.NORMAL);
+		// else if (this == Butcher)
+		// return entity instanceof org.bukkit.entity.Villager
+		// && (((org.bukkit.entity.Villager) entity).getProfession() ==
+		// Profession.BUTCHER);
+		// else if (this == Blacksmith)
+		// return entity instanceof org.bukkit.entity.Villager
+		// && (((org.bukkit.entity.Villager) entity).getProfession() ==
+		// Profession.BLACKSMITH);
+		// else if (this == Priest)
+		// return entity instanceof org.bukkit.entity.Villager
+		// && (((org.bukkit.entity.Villager) entity).getProfession() ==
+		// Profession.PRIEST);
+		// else if (this == Farmer)
+		// return entity instanceof org.bukkit.entity.Villager
+		// && (((org.bukkit.entity.Villager) entity).getProfession() ==
+		// Profession.FARMER);
+		// else if (this == Librarian)
+		// return entity instanceof org.bukkit.entity.Villager
+		// && (((org.bukkit.entity.Villager) entity).getProfession() ==
+		// Profession.LIBRARIAN);
 
 		if (Servers.isMC19OrNewer())
 			if (this == Shulker)
@@ -539,8 +574,8 @@ public enum MinecraftMob {
 	/**
 	 * getCommandString. Only used for Minecraft 1.7
 	 * 
-	 * @return the command string which can be run in the console to give the
-	 *         player a head
+	 * @return the command string which can be run in the console to give the player
+	 *         a head
 	 */
 	public String getCommandString() {
 		switch (this) {
