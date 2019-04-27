@@ -138,4 +138,19 @@ public class Tools {
 			return new Location(null, x, y, z, yaw, pitch);
 	}
 	
+	public static double round(double d) {
+		return Math.round(d / Core.getInstance().getConfigManager().rewardRounding)
+				* Core.getInstance().getConfigManager().rewardRounding;
+	}
+
+	public static double ceil(double d) {
+		return Math.ceil(d / Core.getInstance().getConfigManager().rewardRounding)
+				* Core.getInstance().getConfigManager().rewardRounding;
+	}
+
+	public static double floor(double d) {
+		return Math.floor(d / Core.getInstance().getConfigManager().rewardRounding)
+				* Core.getInstance().getConfigManager().rewardRounding;
+	}
+	
 }
