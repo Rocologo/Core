@@ -42,8 +42,8 @@ public class CustomItems {
 
 	private BagOfGoldCore plugin;
 
-	public CustomItems(BagOfGoldCore plugin) {
-		this.plugin = plugin;
+	public CustomItems() {
+		this.plugin = BagOfGoldCore.getInstance();
 	}
 
 	// How to get Playerskin

@@ -34,8 +34,8 @@ public class BagOfGoldItems implements Listener {
 	private HashMap<UUID, Reward> placedMoney_Reward = new HashMap<UUID, Reward>();
 	private HashMap<UUID, Location> placedMoney_Location = new HashMap<UUID, Location>();
 
-	public BagOfGoldItems(BagOfGoldCore plugin) {
-		this.plugin = plugin;
+	public BagOfGoldItems() {
+		this.plugin = BagOfGoldCore.getInstance();
 		file = new File(plugin.getDataFolder(), "rewards.yml");
 		loadAllStoredRewardsFromMobHunting();
 		loadAllStoredRewards();
@@ -89,7 +89,7 @@ public class BagOfGoldItems implements Listener {
 			skullMeta.setLore(new ArrayList<String>(Arrays.asList("Hidden:" + reward.getDisplayname(),
 					"Hidden:" + reward.getMoney(), "Hidden:" + reward.getRewardType(),
 					reward.getMoney() == 0 ? "Hidden:" : "Hidden:" + UUID.randomUUID(),
-					"Hidden:" + reward.getSkinUUID(), plugin.getMessages().getString("bagofgold.reward.name"))));
+					"Hidden:" + reward.getSkinUUID(), plugin.getMessages().getString("bagofgoldcore.reward.name"))));
 
 		if (reward.getMoney() == 0)
 			skullMeta.setDisplayName(

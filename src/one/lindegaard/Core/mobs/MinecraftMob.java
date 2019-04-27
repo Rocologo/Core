@@ -188,7 +188,7 @@ public enum MinecraftMob {
 	// Stray
 	Stray("STRAY", "MH_Stray", "1120e6b8-0394-45c8-ac3a-153a126734e1", "Stray",
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjc4MGQxZjAyMTZlMjRlMmEzM2ZjYTQ3YjNlZjJjYmM0ZjM3Njg5ZGFkNTNmYWFmZDM0NDUxZDBkYmY4MTFmIn19fQ==",
-			"Jr4tBvWBrgu6efagb5HRYtxi4ljjLIiieMisc5DrtecUftsyCPzU+vt5GAyg2ebuzkLCgWhv1HRFEjD2+RW/Ik7ugTsCV9zOaCQ4PEANhgqPPJaiqxqQMltryZlcif3W3fcndX0EWwg56nFhfTtPAZHsoIj6njpmrDTx69LO2Za1NhJZGWouDQ3pC0Ady9GyYUDdwDXQZckTDGgJ3cDNe6821n8y/KRZe7PPtp6vUjWltEgdRPugoVimKOK+Pz49LOQyir6Yn4MMWkj4DGur7DcZz5SRRQX1Gblae9t1sdyFDsCkXB4LOIOdiTcmoDv4apEKMP/2Fkg7DGm3abEykQgrsOTi93JICzBsozQaJ8Yqt9gNJBHIYuYJrnbAauMLji3MATiOM5QjZEHvVUebRs4yVYpz2/W/LP/SEdODxX7nKsy3x+Uo1YBmQtIOaeyopdqBUxlILFp13HcrUDsz1L1miqaQjgdKKVaYsn4Dm0/pWDC//TMaGs3Jtu2TFNi6tu8/4uDabRNRYcBW7C98XfL8N8z7MwHIo+6oLz1WP9zU0lCDLvkRWb5RF4+7Wx3/xa9d4AlZNLWAdA6a0Bu02H5+vK57uNEHdBkJkhqEpaoHMG+c+VAjKzIADKEYvo+Vl3waqz8sePxp3PEGAM6+8AjKgP2iEow1WqEShyJLI6jU/+E="),
+			"Jr4tBvWBrgu6efagb5HRYtxi4ljjLIiie5DrtecUftsyCPzU+vt5GAyg2ebuzkLCgWhv1HRFEjD2+RW/Ik7ugTsCV9zOaCQ4PEANhgqPPJaiqxqQMltryZlcif3W3fcndX0EWwg56nFhfTtPAZHsoIj6njpmrDTx69LO2Za1NhJZGWouDQ3pC0Ady9GyYUDdwDXQZckTDGgJ3cDNe6821n8y/KRZe7PPtp6vUjWltEgdRPugoVimKOK+Pz49LOQyir6Yn4MMWkj4DGur7DcZz5SRRQX1Gblae9t1sdyFDsCkXB4LOIOdiTcmoDv4apEKMP/2Fkg7DGm3abEykQgrsOTi93JICzBsozQaJ8Yqt9gNJBHIYuYJrnbAauMLji3MATiOM5QjZEHvVUebRs4yVYpz2/W/LP/SEdODxX7nKsy3x+Uo1YBmQtIOaeyopdqBUxlILFp13HcrUDsz1L1miqaQjgdKKVaYsn4Dm0/pWDC//TMaGs3Jtu2TFNi6tu8/4uDabRNRYcBW7C98XfL8N8z7MwHIo+6oLz1WP9zU0lCDLvkRWb5RF4+7Wx3/xa9d4AlZNLWAdA6a0Bu02H5+vK57uNEHdBkJkhqEpaoHMG+c+VAjKzIADKEYvo+Vl3waqz8sePxp3PEGAM6+8AjKgP2iEow1WqEShyJLI6jU/+E="),
 	// ******************************************************************
 	// Minecraft 1.9
 	// *******************************************************************
@@ -251,7 +251,7 @@ public enum MinecraftMob {
 			"eyJ0aW1lc3RhbXAiOjE0NjczMTAyMjU0OTYsInByb2ZpbGVJZCI6ImM5YjFmYTJiNjhkMjQ3N2U4NzgxYTYwNjMwMWIzMmFiIiwicHJvZmlsZU5hbWUiOiJBbnRob255OTE5MCIsInNpZ25hdHVyZVJlcXVpcmVkIjp0cnVlLCJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjk1ZWY4MzYzODlhZjk5MzE1OGFiYTI3ZmYzN2I2NTY3MTg1ZjdhNzIxY2E5MGZkZmViOTM3YTdjYjU3NDcifX19",
 			"l5DrkH76WcLT2vIa/eaeR2nyHX3LHFrT8XCJtCTwD/zZbWPcpVtpYEgEOkd21jPjjX3KVMe/OXI46zpcYzzOE0iZI5D0A9ObrynsWux1mdq/BraPNqzmb2zFaW6uUEy03coNVuYxgH0JgBnuWYne5HqLo1rllDiOzOAHm9CvJqQG2AEA8TdDdIGG1KSvQ0dUu3CTu2hC3G/0EVPXs3FMrutfxjz2n5gFIcCSNuWrvf9r/4Jcvn1AqA3KXHpIgDpMSJ6Z4Jk+UJgpG8q2DqW91osdnttqtxJjzE5uJKmfeDZvzoQX0MmC1zjSbcwSMxTlx3jWN2V4npVfm5lfWOEquGFQIViU37DcqsC3VNFLJRjZ1nRb8VBoQGImj6SEHtKydDLiBr1nmtk9/0s9RIyS35tZ8v43bPY84oxurWlQv7wml0gIWTKSQkO2j853DmxrqS2rolKJOTWlQml1QCmT34CwBvJOuLX8yQyjIVpRIIvB3/KG/iOzYS4R6MU/96a9pPvDHt3R4YIp0UT2NPqVc1IAXJw/nRX+InCRbKgfhe7Zb9ABY2O4+la0MmXNc0GbYUJVmtNpvM0RyiPLiY44CFX2Djd7qLkMP/0KS7SgwhHTayQRBFvn0/SNkMjNcX9GK9ePmS8h8FUnJ+kAD4BZdqKFYX86ldN8/mea68VhuAU="),
 	// Enderman
-	Enderman("ENDERMAN", "MH_Enderman", "455907Misce3-5bd1-4cb3-8d0c-f22e2a9d5652", "Enderman",
+	Enderman("ENDERMAN", "MH_Enderman", "455907e3-5bd1-4cb3-8d0c-f22e2a9d5652", "Enderman",
 			"eyJ0aW1lc3RhbXAiOjE0NjczMTA2MjAxOTcsInByb2ZpbGVJZCI6IjNlMjZiMDk3MWFjZDRjNmQ5MzVjNmFkYjE1YjYyMDNhIiwicHJvZmlsZU5hbWUiOiJOYWhlbGUiLCJzaWduYXR1cmVSZXF1aXJlZCI6dHJ1ZSwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzc2YTIxZmNmOGM5NjViYmQ4NGM0MjU4YjI4ODY4OTUzM2RhZDU5ZDQ4YmQyYjdlY2I2OTIxZThiOGZhM2MzYyJ9fX0=",
 			"jGdhCoxPGZc6EBTo8XczcBIVHenJGASGq3j+U6Qodw+qCMAnVCMHrb0bmDv7mPEBsJ0/d/drQhvF9CXV6maytlULXFRp0XaUISL1C0Zd7HarTzvel6UDyVv5IpzgJUeKLeQ8juOS6+asAksjb4y88Cw5Dyy+vPUPJOX8+WScMXWdB1DfUaWBf6jwmsVFvXqt577IcK9ILNRixGWWN43u57bmbKpv8rGX4SB9ZfcrCxzeJdVzkZhgArNjdL5wX9+C0Im/tM7yEEDacJTv5fIA09ZtczRbG2V6HdI+zMt3JnldCBXl4lBB7rBJOa98NXnwTuZ5uwDOf1RQCH2mbo7TrUUspd40YmOoC0p0mEpzkk21d6b/C5hFLKCssccyDHmB/tXJM/wN6QIMJsXFiwIajpHwcosLphlEIL0hd0KJelQOUTChZna/Xmn9WIr+rhd2yJWpFjWEeA9PVxrbDgX7rMn9ofTc71EAupsKsIVpMxQT72XnpB9ezcqfHGn9VpY1k26cluVD9Yg9L6weeLqixQ0hOAc9KadUZRbBbrcPWWmByrUBmRiWMBb30Qc7XyD19F6sXHNicoRfQ4fIgWYhuCnCquWn0ouvwindpUtjx7/Wb/pFuYceWAW5ALLHOMCpQZHjmbUOlv/NDLxvv/0ew4jtxdQmxbYEC1whzVSSfIE="),
 	// Silverfish
@@ -658,7 +658,7 @@ public enum MinecraftMob {
 			break;
 
 		default:
-			ItemStack is = new ItemStack(new CustomItems(BagOfGoldCore.getInstance()).getCustomtexture(
+			ItemStack is = new ItemStack(new CustomItems().getCustomtexture(
 					UUID.fromString(Reward.MH_REWARD_KILLED_UUID), getFriendlyName(), mTextureValue, mTextureSignature,
 					money, UUID.randomUUID(), getPlayerUUID()));
 			is.setAmount(amount);
