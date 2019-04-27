@@ -44,19 +44,14 @@ public class Tools {
 		return Math.floor(d / Core.getInstance().getConfigManager().rewardRounding)
 				* Core.getInstance().getConfigManager().rewardRounding;
 	}
-	
-	public static double floorTEST(double d) {
-		return Math.floor(d / Core.getInstance().getConfigManager().rewardRounding)
-				* Core.getInstance().getConfigManager().rewardRounding;
-	}
-	
+
 	public static boolean isUUID(String string) {
-	    try {
-	        UUID.fromString(string);
-	        return true;
-	    } catch (Exception ex) {
-	        return false;
-	    }
+		try {
+			UUID.fromString(string);
+			return true;
+		} catch (Exception ex) {
+			return false;
+		}
 	}
 
 	public static final Block getTargetBlock(Player player, int range) {
@@ -115,7 +110,7 @@ public class Tools {
 		}
 		return Collections.emptyList();
 	}
-	
+
 	public static Player getOnlinePlayer(OfflinePlayer offlinePlayer) {
 		for (Player player : getOnlinePlayers()) {
 			if (player.getName().equals(offlinePlayer.getName()))
@@ -123,7 +118,7 @@ public class Tools {
 		}
 		return null;
 	}
-	
+
 	public static Map<String, Object> toMap(Location loc) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("X", loc.getX());
@@ -157,5 +152,5 @@ public class Tools {
 		} else
 			return new Location(null, x, y, z, yaw, pitch);
 	}
-	
+
 }
