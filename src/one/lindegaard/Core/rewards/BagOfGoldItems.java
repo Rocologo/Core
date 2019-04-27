@@ -20,13 +20,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 
-import one.lindegaard.Core.BagOfGoldCore;
+import one.lindegaard.Core.Core;
 import one.lindegaard.Core.Tools;
 import one.lindegaard.Core.Materials.Materials;
 
 public class BagOfGoldItems implements Listener {
 
-	BagOfGoldCore plugin;
+	Core plugin;
 	private File file;
 	private YamlConfiguration config = new YamlConfiguration();
 
@@ -35,7 +35,7 @@ public class BagOfGoldItems implements Listener {
 	private HashMap<UUID, Location> placedMoney_Location = new HashMap<UUID, Location>();
 
 	public BagOfGoldItems() {
-		this.plugin = BagOfGoldCore.getInstance();
+		this.plugin = Core.getInstance();
 		file = new File(plugin.getDataFolder(), "rewards.yml");
 		loadAllStoredRewardsFromMobHunting();
 		loadAllStoredRewards();

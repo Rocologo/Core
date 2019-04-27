@@ -24,7 +24,7 @@ import com.google.gson.JsonParser;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
-import one.lindegaard.Core.BagOfGoldCore;
+import one.lindegaard.Core.Core;
 import one.lindegaard.Core.PlayerSettings;
 import one.lindegaard.Core.Tools;
 import one.lindegaard.Core.Server.Servers;
@@ -42,10 +42,10 @@ import one.lindegaard.Core.skins.Skins_1_9_R1;
 
 public class CustomItems {
 
-	private BagOfGoldCore plugin;
+	private Core plugin;
 
 	public CustomItems() {
-		this.plugin = BagOfGoldCore.getInstance();
+		this.plugin = Core.getInstance();
 	}
 
 	// How to get Playerskin
@@ -112,7 +112,7 @@ public class CustomItems {
 
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(uuid);
 
-		PlayerSettings ps = BagOfGoldCore.getInstance().getPlayerSettingsManager().getPlayerSettings(offlinePlayer);
+		PlayerSettings ps = Core.getInstance().getPlayerSettingsManager().getPlayerSettings(offlinePlayer);
 		String[] skinCache = new String[2];
 
 		if (ps.getTexture() == null || ps.getSignature() == null || ps.getTexture().isEmpty()
@@ -136,8 +136,8 @@ public class CustomItems {
 			if (skinCache != null && !skinCache[0].isEmpty() && !skinCache[1].isEmpty()) {
 				ps.setTexture(skinCache[0]);
 				ps.setSignature(skinCache[1]);
-				BagOfGoldCore.getInstance().getPlayerSettingsManager().setPlayerSettings(offlinePlayer, ps);
-				BagOfGoldCore.getInstance().getDataStoreManager().updatePlayerSettings(offlinePlayer, ps);
+				Core.getInstance().getPlayerSettingsManager().setPlayerSettings(offlinePlayer, ps);
+				Core.getInstance().getDataStoreManager().updatePlayerSettings(offlinePlayer, ps);
 			} else {
 				plugin.getMessages().debug("Empty skin");
 				return skull;
@@ -426,16 +426,16 @@ public class CustomItems {
 					"Hidden:" + reward.getMoney(), "Hidden:" + reward.getRewardType(),
 					reward.getMoney() == 0 ? "Hidden:" : "Hidden:" + UUID.randomUUID(),
 					"Hidden:" + reward.getSkinUUID(),
-					BagOfGoldCore.getInstance().getMessages().getString("bagofgold.reward.name"))));
+					Core.getInstance().getMessages().getString("bagofgold.reward.name"))));
 
 		if (reward.getMoney() == 0)
 			skullMeta.setDisplayName(
-					ChatColor.valueOf(BagOfGoldCore.getInstance().getConfigManager().dropMoneyOnGroundTextColor)
+					ChatColor.valueOf(Core.getInstance().getConfigManager().dropMoneyOnGroundTextColor)
 							+ reward.getDisplayname());
 		else
 			skullMeta.setDisplayName(ChatColor
-					.valueOf(BagOfGoldCore.getInstance().getConfigManager().dropMoneyOnGroundTextColor)
-					+ (BagOfGoldCore.getInstance().getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("ITEM")
+					.valueOf(Core.getInstance().getConfigManager().dropMoneyOnGroundTextColor)
+					+ (Core.getInstance().getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("ITEM")
 							? Tools.format(reward.getMoney())
 							: reward.getDisplayname() + " (" + Tools.format(reward.getMoney()) + ")"));
 		skull.setItemMeta(skullMeta);

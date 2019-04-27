@@ -10,13 +10,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import one.lindegaard.Core.BagOfGoldCore;
+import one.lindegaard.Core.Core;
 
 public class ConfigManager extends AutoConfig {
 
-	BagOfGoldCore plugin;
+	Core plugin;
 
-	public ConfigManager(BagOfGoldCore plugin, File file) {
+	public ConfigManager(Core plugin, File file) {
 
 		super(plugin, file);
 
@@ -36,6 +36,9 @@ public class ConfigManager extends AutoConfig {
 
 		setCategoryComment("general", "########################################################################"
 				+ "\nGeneral Settings" + "\n########################################################################");
+
+		setCategoryComment("updates", "########################################################################"
+				+ "\nUpdate settings" + "\n########################################################################");
 
 	}
 
@@ -168,6 +171,20 @@ public class ConfigManager extends AutoConfig {
 
 	@ConfigField(name = "backup", category = "general", comment = "Backup config on each server start / reload")
 	public boolean backup = true;
+
+	// #####################################################################################
+	// Update Settings
+	// #####################################################################################
+	@ConfigField(name = "update-check", category = "updates", comment = "Check if there is a new version of the plugin available.")
+	public boolean updateCheck = true;
+
+	@ConfigField(name = "check_every", category = "updates", comment = "Set the number of seconds between each check. Recommended setting is"
+			+ "\ncheck_every: 7200 ~ to check every second hour.")
+	public int checkEvery = 7200;
+
+	@ConfigField(name = "autoupdate", category = "updates", comment = "Set 'autoupdate: true' if you want new updates downloaded and installed."
+			+ "\nYou will still have to reboot the server manually.")
+	public boolean autoupdate = false;
 
 	@Override
 	protected void onPostLoad() throws InvalidConfigurationException {

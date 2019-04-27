@@ -7,14 +7,14 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
-import one.lindegaard.Core.BagOfGoldCore;
+import one.lindegaard.Core.Core;
 import one.lindegaard.Core.PlayerSettings;
 
 public abstract class DatabaseDataStore implements IDataStore {
 
-	private BagOfGoldCore plugin;
+	private Core plugin;
 
-	public DatabaseDataStore(BagOfGoldCore plugin) {
+	public DatabaseDataStore(Core plugin) {
 		this.plugin = plugin;
 	}
 

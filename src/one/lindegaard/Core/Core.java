@@ -5,6 +5,12 @@ import java.io.File;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import one.lindegaard.Core.commands.CommandDispatcher;
+import one.lindegaard.Core.commands.DebugCommand;
+import one.lindegaard.Core.commands.MuteCommand;
+import one.lindegaard.Core.commands.ReloadCommand;
+import one.lindegaard.Core.commands.UpdateCommand;
+import one.lindegaard.Core.commands.VersionCommand;
 import one.lindegaard.Core.config.ConfigManager;
 import one.lindegaard.Core.rewards.BagOfGoldItems;
 import one.lindegaard.Core.storage.DataStoreException;
@@ -12,26 +18,29 @@ import one.lindegaard.Core.storage.DataStoreManager;
 import one.lindegaard.Core.storage.IDataStore;
 import one.lindegaard.Core.storage.MySQLDataStore;
 import one.lindegaard.Core.storage.SQLiteDataStore;
+import one.lindegaard.Core.update.SpigetUpdater;
 
-public class BagOfGoldCore extends JavaPlugin {
+public class Core extends JavaPlugin {
 
-	private static BagOfGoldCore instance;
+	private static Core instance;
 	private File mFile = new File(getDataFolder(), "config.yml");
 
 	private ConfigManager mConfig;
 	private Messages mMessages;
 	private PlayerSettingsManager mPlayerSettingsManager;
+	private CommandDispatcher mCommandDispatcher;
 	private IDataStore mStore;
 	private DataStoreManager mStoreManager;
 	private WorldGroup mWorldGroupManager;
 	private BagOfGoldItems mBagOfGoldItems;
+	private SpigetUpdater mSpigetUpdater;
 
 	private boolean mInitialized = false;
 
 	public static void startUp() {
-		Bukkit.getConsoleSender().sendMessage("Loading BagOfGoldcore Library Plugin");
-		Class<BagOfGoldCore> cl = one.lindegaard.Core.BagOfGoldCore.class;
-		BagOfGoldCore jv = org.bukkit.plugin.java.JavaPlugin.getPlugin(cl); 
+		Bukkit.getConsoleSender().sendMessage("Loading BagOfGoldCore Library Plugin");
+		Class<Core> cl = one.lindegaard.Core.Core.class;
+		Core jv = org.bukkit.plugin.java.JavaPlugin.getPlugin(cl); 
 		Bukkit.getServer().getPluginManager().enablePlugin(jv);
 	}
 	
@@ -56,6 +65,20 @@ public class BagOfGoldCore extends JavaPlugin {
 
 		mWorldGroupManager = new WorldGroup(this);
 		mWorldGroupManager.load();
+		
+		mSpigetUpdater = new SpigetUpdater(this);
+		mSpigetUpdater.setCurrentJarFile(this.getFile().getName());
+		
+		// Register commands
+		mCommandDispatcher = new CommandDispatcher(this, "bagofgold",
+				instance.getMessages().getString("bagofgold.command.base.description") + getDescription().getVersion());
+		getCommand("bagofgold").setExecutor(mCommandDispatcher);
+		getCommand("bagofgold").setTabCompleter(mCommandDispatcher);
+		mCommandDispatcher.registerCommand(new ReloadCommand(this));
+		mCommandDispatcher.registerCommand(new UpdateCommand(this));
+		mCommandDispatcher.registerCommand(new VersionCommand(this));
+		mCommandDispatcher.registerCommand(new DebugCommand(this));
+		mCommandDispatcher.registerCommand(new MuteCommand(this));
 
 		if (mConfig.databaseType.equalsIgnoreCase("mysql"))
 			mStore = new MySQLDataStore(this);
@@ -103,16 +126,16 @@ public class BagOfGoldCore extends JavaPlugin {
 	// ************************************************************************************
 	// Managers and handlers
 	// ************************************************************************************
-	public static BagOfGoldCore getInstance() {
+	public static Core getInstance() {
 		return instance;
 	}
 
-	public static BagOfGoldCore getAPI() {
+	public static Core getAPI() {
 		return instance;
 	}
 
 	@Deprecated
-	public static BagOfGoldCore getApi() {
+	public static Core getApi() {
 		return instance;
 	}
 
@@ -177,5 +200,10 @@ public class BagOfGoldCore extends JavaPlugin {
 	public BagOfGoldItems getBagOfGoldItems() {
 		return mBagOfGoldItems;
 	}
+	
+	public SpigetUpdater getSpigetUpdater() {
+		return mSpigetUpdater;
+	}
+
 
 }

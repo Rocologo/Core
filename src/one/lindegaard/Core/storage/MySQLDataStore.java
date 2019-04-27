@@ -5,13 +5,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Locale;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import one.lindegaard.Core.BagOfGoldCore;
+import one.lindegaard.Core.Core;
 
 public class MySQLDataStore extends DatabaseDataStore {
 
-	private BagOfGoldCore plugin;
+	private Core plugin;
 
-	public MySQLDataStore(BagOfGoldCore plugin) {
+	public MySQLDataStore(Core plugin) {
 		super(plugin);
 		this.plugin = plugin;
 	}

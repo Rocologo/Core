@@ -9,7 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 
-import one.lindegaard.Core.BagOfGoldCore;
+import one.lindegaard.Core.Core;
 import one.lindegaard.Core.PlayerSettings;
 import one.lindegaard.Core.storage.asynch.IDataStoreTask;
 import one.lindegaard.Core.storage.asynch.PlayerSettingsRetrieverTask;
@@ -17,7 +17,7 @@ import one.lindegaard.Core.storage.asynch.StoreTask;
 
 public class DataStoreManager {
 
-	private BagOfGoldCore plugin;
+	private Core plugin;
 
 	// Accessed on multiple threads
 	private final LinkedHashSet<Object> mWaiting = new LinkedHashSet<Object>();
@@ -32,7 +32,7 @@ public class DataStoreManager {
 	// Accessed only from retrieve thread
 	private TaskThread mTaskThread;
 
-	public DataStoreManager(BagOfGoldCore plugin, IDataStore store) {
+	public DataStoreManager(Core plugin, IDataStore store) {
 		this.plugin = plugin;
 		mStore = store;
 		mTaskThread = new TaskThread();

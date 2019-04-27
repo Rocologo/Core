@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 import org.bukkit.OfflinePlayer;
 
-import one.lindegaard.Core.BagOfGoldCore;
+import one.lindegaard.Core.Core;
 import one.lindegaard.Core.PlayerSettings;
 import one.lindegaard.Core.storage.DataStoreException;
 import one.lindegaard.Core.storage.IDataStore;
@@ -25,13 +25,13 @@ public class PlayerSettingsRetrieverTask implements IDataStoreTask<PlayerSetting
 			try {
 				return store.loadPlayerSettings(mPlayer);
 			} catch (UserNotFoundException e) {
-				BagOfGoldCore.getInstance().getMessages().debug("Insert new PlayerSettings for %s to database.",
+				Core.getInstance().getMessages().debug("Insert new PlayerSettings for %s to database.",
 						mPlayer.getName());
 				String worldgroup = mPlayer.isOnline()
-						? BagOfGoldCore.getInstance().getWorldGroupManager().getCurrentWorldGroup(mPlayer)
-						: BagOfGoldCore.getInstance().getWorldGroupManager().getDefaultWorldgroup();
+						? Core.getInstance().getWorldGroupManager().getCurrentWorldGroup(mPlayer)
+						: Core.getInstance().getWorldGroupManager().getDefaultWorldgroup();
 				PlayerSettings ps = new PlayerSettings(mPlayer, worldgroup,
-						BagOfGoldCore.getInstance().getConfigManager().learningMode, false);
+						Core.getInstance().getConfigManager().learningMode, false);
 				try {
 					store.insertPlayerSettings(ps);
 				} catch (DataStoreException e1) {

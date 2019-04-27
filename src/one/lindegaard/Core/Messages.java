@@ -22,12 +22,14 @@ import java.util.regex.Pattern;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class Messages {
 
-	private BagOfGoldCore plugin;
+	private Core plugin;
 
-	public Messages(BagOfGoldCore plugin) {
+	public Messages(Core plugin) {
 		this.plugin = plugin;
 		exportDefaultLanguages(plugin);
 	}
@@ -37,7 +39,7 @@ public class Messages {
 	private static final String PREFIX = ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.RESET;
 	private static String[] sources = new String[] { "en_US.lang" };
 
-	public void exportDefaultLanguages(BagOfGoldCore plugin) {
+	public void exportDefaultLanguages(Core plugin) {
 		File folder = new File(plugin.getDataFolder(), "lang");
 		if (!folder.exists())
 			folder.mkdirs();
@@ -313,6 +315,28 @@ public class Messages {
 			sortedHashMap.put(it, map.get(it));
 		}
 		return sortedHashMap;
+	}
+
+	public void playerSendMessage(final Player player, String message) {
+		if (isEmpty(message))
+			return;
+		player.sendMessage(message);
+	}
+
+	public void senderSendMessage(final CommandSender sender, String message) {
+		if (isEmpty(message))
+			return;
+		if (sender instanceof Player) {
+			Player player = ((Player) sender);
+			if (!plugin.getPlayerSettingsManager().getPlayerSettings(player).isMuted())
+				player.sendMessage(message);
+		} else
+			sender.sendMessage(message);
+	}
+
+	private static boolean isEmpty(String message) {
+		message = ChatColor.stripColor(message);
+		return message.isEmpty();
 	}
 
 }

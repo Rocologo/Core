@@ -19,7 +19,7 @@ import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 
-import one.lindegaard.Core.BagOfGoldCore;
+import one.lindegaard.Core.Core;
 import one.lindegaard.Core.mobs.MinecraftMob;
 
 
@@ -122,7 +122,7 @@ public class Reward {
 					money == 0 ? "Hidden:" : "Hidden:" + uniqueId.toString(), // unique
 																				// id
 					"Hidden:" + (skinUUID == null ? "" : skinUUID.toString()),
-					BagOfGoldCore.getAPI().getMessages().getString("bagofgold.reward.name"))); // skin
+					Core.getAPI().getMessages().getString("bagofgold.reward.name"))); // skin
 
 	}
 

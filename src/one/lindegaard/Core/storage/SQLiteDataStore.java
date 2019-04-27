@@ -4,13 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import one.lindegaard.Core.BagOfGoldCore;
+import one.lindegaard.Core.Core;
 
 public class SQLiteDataStore extends DatabaseDataStore {
 
-	private BagOfGoldCore plugin;
+	private Core plugin;
 
-	public SQLiteDataStore(BagOfGoldCore plugin) {
+	public SQLiteDataStore(Core plugin) {
 		super(plugin);
 		this.plugin = plugin;
 	}

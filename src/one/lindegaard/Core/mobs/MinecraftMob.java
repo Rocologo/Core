@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import one.lindegaard.Core.BagOfGoldCore;
+import one.lindegaard.Core.Core;
 import one.lindegaard.Core.Tools;
 import one.lindegaard.Core.Server.Servers;
 import one.lindegaard.Core.rewards.CustomItems;
@@ -433,7 +433,7 @@ public enum MinecraftMob {
 	}
 
 	public String getFriendlyName() {
-		return BagOfGoldCore.getInstance().getMessages().getString("mobs." + name() + ".name");
+		return Core.getInstance().getMessages().getString("mobs." + name() + ".name");
 	}
 
 	public boolean matches(Entity entity) {
@@ -600,7 +600,7 @@ public enum MinecraftMob {
 				return String.valueOf(mob.getTextureValue());
 			}
 		}
-		BagOfGoldCore.getInstance().getMessages().debug("[ERROR] %s NO texture found", displayname);
+		Core.getInstance().getMessages().debug("[ERROR] %s NO texture found", displayname);
 		return "";
 	}
 
@@ -611,7 +611,7 @@ public enum MinecraftMob {
 				return String.valueOf(mob.getTextureSignature());
 			}
 		}
-		BagOfGoldCore.getInstance().getMessages().debug("[ERROR] %s NO Signature found", displayname);
+		Core.getInstance().getMessages().debug("[ERROR] %s NO Signature found", displayname);
 		return "";
 
 	}
@@ -687,16 +687,16 @@ public enum MinecraftMob {
 					"Hidden:" + reward.getMoney(), "Hidden:" + reward.getRewardType(),
 					reward.getMoney() == 0 ? "Hidden:" : "Hidden:" + UUID.randomUUID(),
 					"Hidden:" + reward.getSkinUUID(),
-					BagOfGoldCore.getInstance().getMessages().getString("bagofgold.reward.name"))));
+					Core.getInstance().getMessages().getString("bagofgold.reward.name"))));
 
 		if (reward.getMoney() == 0)
 			skullMeta.setDisplayName(
-					ChatColor.valueOf(BagOfGoldCore.getInstance().getConfigManager().dropMoneyOnGroundTextColor)
+					ChatColor.valueOf(Core.getInstance().getConfigManager().dropMoneyOnGroundTextColor)
 							+ reward.getDisplayname());
 		else
 			skullMeta.setDisplayName(ChatColor
-					.valueOf(BagOfGoldCore.getInstance().getConfigManager().dropMoneyOnGroundTextColor)
-					+ (BagOfGoldCore.getInstance().getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("ITEM")
+					.valueOf(Core.getInstance().getConfigManager().dropMoneyOnGroundTextColor)
+					+ (Core.getInstance().getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("ITEM")
 							? Tools.format(reward.getMoney())
 							: reward.getDisplayname() + " (" + Tools.format(reward.getMoney()) + ")"));
 		skull.setItemMeta(skullMeta);

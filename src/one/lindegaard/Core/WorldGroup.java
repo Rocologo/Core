@@ -23,14 +23,14 @@ import org.bukkit.entity.Player;
  */
 public class WorldGroup {
 
-	private BagOfGoldCore plugin;
+	private Core plugin;
 	private File file;
 	private YamlConfiguration config = new YamlConfiguration();
 	private HashMap<String, List<String>> worldGroups = new HashMap<String, List<String>>();
 	private HashMap<String, GameMode> defaultGameMode = new HashMap<String, GameMode>();
 	private HashMap<String, Double> startBalance = new HashMap<String, Double>();
 
-	public WorldGroup(BagOfGoldCore plugin) {
+	public WorldGroup(Core plugin) {
 		this.plugin = plugin;
 		file = new File(plugin.getDataFolder(), "worldgroups.yml");
 		if (file.exists()) {

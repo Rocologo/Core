@@ -21,12 +21,12 @@ public class PlayerSettingsManager implements Listener {
 
 	private HashMap<UUID, PlayerSettings> mPlayerSettings = new HashMap<UUID, PlayerSettings>();
 
-	private BagOfGoldCore plugin;
+	private Core plugin;
 
 	/**
 	 * Constructor for the PlayerSettingsmanager
 	 */
-	PlayerSettingsManager(BagOfGoldCore plugin) {
+	PlayerSettingsManager(Core plugin) {
 		this.plugin = plugin;
 		Bukkit.getPluginManager().registerEvents(this, plugin);
 	}
