@@ -13,6 +13,7 @@ import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -27,6 +28,7 @@ import one.lindegaard.Core.BagOfGoldCore;
 import one.lindegaard.Core.PlayerSettings;
 import one.lindegaard.Core.Tools;
 import one.lindegaard.Core.Server.Servers;
+import one.lindegaard.Core.mobs.MinecraftMob;
 import one.lindegaard.Core.skins.Skins;
 import one.lindegaard.Core.skins.Skins_1_10_R1;
 import one.lindegaard.Core.skins.Skins_1_11_R1;
@@ -353,6 +355,89 @@ public class CustomItems {
 		else
 			skullMeta.setDisplayName(color + mDisplayName + " (" + Tools.format(money) + ")");
 
+		skull.setItemMeta(skullMeta);
+		return skull;
+	}
+	
+	public ItemStack getCustomHead(MinecraftMob minecraftMob, String name, int amount, double money, UUID skinUUID) {
+		ItemStack skull;
+		switch (minecraftMob) {
+		case Skeleton:
+			skull = new ItemStack(Material.SKELETON_SKULL, amount);
+			skull = setDisplayNameAndHiddenLores(skull, new Reward(minecraftMob.getFriendlyName(), money,
+					UUID.fromString(Reward.MH_REWARD_KILLED_UUID), UUID.randomUUID(), skinUUID));
+			break;
+
+		case WitherSkeleton:
+			skull = new ItemStack(Material.WITHER_SKELETON_SKULL, amount);
+			skull = setDisplayNameAndHiddenLores(skull, new Reward(minecraftMob.getFriendlyName(), money,
+					UUID.fromString(Reward.MH_REWARD_KILLED_UUID), UUID.randomUUID(), skinUUID));
+			break;
+
+		case Zombie:
+			skull = new ItemStack(Material.ZOMBIE_HEAD, amount);
+			skull = setDisplayNameAndHiddenLores(skull, new Reward(minecraftMob.getFriendlyName(), money,
+					UUID.fromString(Reward.MH_REWARD_KILLED_UUID), UUID.randomUUID(), skinUUID));
+			break;
+
+		case PvpPlayer:
+			skull = getPlayerHead(skinUUID, amount, money);
+			break;
+
+		case Creeper:
+			skull = new ItemStack(Material.CREEPER_HEAD, amount);
+			skull = setDisplayNameAndHiddenLores(skull, new Reward(minecraftMob.getFriendlyName(), money,
+					UUID.fromString(Reward.MH_REWARD_KILLED_UUID), UUID.randomUUID(), skinUUID));
+			break;
+
+		case EnderDragon:
+			skull = new ItemStack(Material.DRAGON_HEAD, amount);
+			skull = setDisplayNameAndHiddenLores(skull, new Reward(minecraftMob.getFriendlyName(), money,
+					UUID.fromString(Reward.MH_REWARD_KILLED_UUID), UUID.randomUUID(), skinUUID));
+			break;
+
+		default:
+			ItemStack is = new ItemStack(getCustomtexture(UUID.fromString(Reward.MH_REWARD_KILLED_UUID),
+					minecraftMob.getFriendlyName(), minecraftMob.getTextureValue(), minecraftMob.getTextureSignature(),
+					money, UUID.fromString(Reward.MH_REWARD_KILLED_UUID), skinUUID));
+			is.setAmount(amount);
+			return is;
+		}
+		return skull;
+	}
+	
+	/**
+	 * setDisplayNameAndHiddenLores: add the Display name and the (hidden) Lores.
+	 * The lores identifies the reward and contain secret information.
+	 * 
+	 * @param skull  - The base itemStack without the information.
+	 * @param reward - The reward information is added to the ItemStack
+	 * @return the updated ItemStack.
+	 */
+	public ItemStack setDisplayNameAndHiddenLores(ItemStack skull, Reward reward) {
+		ItemMeta skullMeta = skull.getItemMeta();
+		if (reward.getRewardType().equals(UUID.fromString(Reward.MH_REWARD_BAG_OF_GOLD_UUID)))
+			skullMeta.setLore(new ArrayList<String>(Arrays.asList("Hidden:" + reward.getDisplayname(),
+					"Hidden:" + reward.getMoney(), "Hidden:" + reward.getRewardType(),
+					reward.getMoney() == 0 ? "Hidden:" : "Hidden:" + UUID.randomUUID(),
+					"Hidden:" + reward.getSkinUUID())));
+		else
+			skullMeta.setLore(new ArrayList<String>(Arrays.asList("Hidden:" + reward.getDisplayname(),
+					"Hidden:" + reward.getMoney(), "Hidden:" + reward.getRewardType(),
+					reward.getMoney() == 0 ? "Hidden:" : "Hidden:" + UUID.randomUUID(),
+					"Hidden:" + reward.getSkinUUID(),
+					BagOfGoldCore.getInstance().getMessages().getString("bagofgold.reward.name"))));
+
+		if (reward.getMoney() == 0)
+			skullMeta.setDisplayName(
+					ChatColor.valueOf(BagOfGoldCore.getInstance().getConfigManager().dropMoneyOnGroundTextColor)
+							+ reward.getDisplayname());
+		else
+			skullMeta.setDisplayName(ChatColor
+					.valueOf(BagOfGoldCore.getInstance().getConfigManager().dropMoneyOnGroundTextColor)
+					+ (BagOfGoldCore.getInstance().getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("ITEM")
+							? Tools.format(reward.getMoney())
+							: reward.getDisplayname() + " (" + Tools.format(reward.getMoney()) + ")"));
 		skull.setItemMeta(skullMeta);
 		return skull;
 	}
