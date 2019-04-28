@@ -12,7 +12,7 @@ import one.lindegaard.Core.commands.ReloadCommand;
 import one.lindegaard.Core.commands.UpdateCommand;
 import one.lindegaard.Core.commands.VersionCommand;
 import one.lindegaard.Core.config.ConfigManager;
-import one.lindegaard.Core.rewards.BagOfGoldItems;
+//import one.lindegaard.Core.rewards.BagOfGoldItems;
 import one.lindegaard.Core.rewards.RewardManager;
 import one.lindegaard.Core.storage.DataStoreException;
 import one.lindegaard.Core.storage.DataStoreManager;
@@ -33,7 +33,7 @@ public class Core extends JavaPlugin {
 	private IDataStore mStore;
 	private DataStoreManager mStoreManager;
 	private WorldGroup mWorldGroupManager;
-	private BagOfGoldItems mBagOfGoldItems;
+	// private BagOfGoldItems mBagOfGoldItems;
 	private SpigetUpdater mSpigetUpdater;
 	private RewardManager mRewardManager;
 
@@ -47,7 +47,6 @@ public class Core extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
-
 
 		mConfig = new ConfigManager(this, mFile);
 
@@ -85,21 +84,15 @@ public class Core extends JavaPlugin {
 		mStoreManager = new DataStoreManager(this, mStore);
 
 		mPlayerSettingsManager = new PlayerSettingsManager(this);
-		
+
 		mRewardManager = new RewardManager(this);
 
 		// Register commands
-		mCommandDispatcher = new CommandDispatcher(
-				this, 
-				"bagcore",
-				instance.
-				getMessages().
-				getString("bagofgoldcore.command.base.description")
+		mCommandDispatcher = new CommandDispatcher(this, "bagcore",
+				instance.getMessages().getString("bagofgoldcore.command.base.description")
 						+ getDescription().getVersion());
-		getCommand("bagc").
-			setExecutor(mCommandDispatcher);
-		getCommand("bagc").
-			setTabCompleter(mCommandDispatcher);
+		getCommand("bagc").setExecutor(mCommandDispatcher);
+		getCommand("bagc").setTabCompleter(mCommandDispatcher);
 		mCommandDispatcher.registerCommand(new ReloadCommand(this));
 		mCommandDispatcher.registerCommand(new UpdateCommand(this));
 		mCommandDispatcher.registerCommand(new VersionCommand(this));
@@ -135,7 +128,7 @@ public class Core extends JavaPlugin {
 		} catch (DataStoreException e) {
 			e.printStackTrace();
 		}
-		
+
 		mWorldGroupManager.save();
 
 		instance.getMessages().debug("Core disabled.");
@@ -162,7 +155,9 @@ public class Core extends JavaPlugin {
 	}
 
 	/**
-	 * Get the MessagesManager
+	 * Get the MessagesManager public BagOfGoldItems getBagOfGoldItems() { return
+	 * mBagOfGoldItems; }
+	 * 
 	 * 
 	 * @return
 	 */
@@ -218,6 +213,7 @@ public class Core extends JavaPlugin {
 	public SpigetUpdater getSpigetUpdater() {
 		return mSpigetUpdater;
 	}
+
 	public RewardManager getRewardManager() {
 		return mRewardManager;
 	}
