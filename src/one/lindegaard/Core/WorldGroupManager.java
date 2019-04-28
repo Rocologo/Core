@@ -16,6 +16,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
 /**
  * @author Rocologo
@@ -23,14 +24,14 @@ import org.bukkit.entity.Player;
  */
 public class WorldGroupManager {
 
-	private Core plugin;
+	private Plugin plugin;
 	private File file;
 	private YamlConfiguration config = new YamlConfiguration();
 	private HashMap<String, List<String>> worldGroups = new HashMap<String, List<String>>();
 	private HashMap<String, GameMode> defaultGameMode = new HashMap<String, GameMode>();
 	private HashMap<String, Double> startBalance = new HashMap<String, Double>();
 
-	public WorldGroupManager(Core plugin) {
+	public WorldGroupManager(Plugin plugin) {
 		this.plugin = plugin;
 		file = new File(plugin.getDataFolder(), "worldgroups.yml");
 		load();
@@ -161,7 +162,7 @@ public class WorldGroupManager {
 							+ "\ntheir economy balance and bank-balance. If you use"
 							+ "\nMyPet, PerWorldInventory or similar, the world "
 							+ "\nshould be the grouped the same way here." + "\n");
-			plugin.getMessages().debug("Saving worldGroups");
+			//plugin.getMessages().debug("Saving worldGroups");
 
 			Set<String> groups = worldGroups.keySet();
 			ConfigurationSection section = config.createSection("groups");
@@ -184,7 +185,7 @@ public class WorldGroupManager {
 				if (!fileMobHunting.exists()) {
 					return;
 				} else {
-					plugin.getMessages().debug("Copy WorldGroups from MobHunting.");
+					//plugin.getMessages().debug("Copy WorldGroups from MobHunting.");
 					try {
 						config.load(fileMobHunting);
 					} catch (IllegalStateException | InvalidConfigurationException | IOException e) {
@@ -192,7 +193,7 @@ public class WorldGroupManager {
 					}
 				}
 			} else {
-				plugin.getMessages().debug("Copy WorldGroups from BagOfGold");
+				//plugin.getMessages().debug("Copy WorldGroups from BagOfGold");
 				try {
 					config.load(fileBagOfGold);
 				} catch (IllegalStateException | InvalidConfigurationException | IOException e) {
@@ -200,7 +201,7 @@ public class WorldGroupManager {
 				}
 			}
 		} else {
-			plugin.getMessages().debug("Loading WorldGroups from BagOfGoldCore.");
+			//plugin.getMessages().debug("Loading WorldGroups from BagOfGoldCore.");
 			try {
 				config.load(file);
 			} catch (IllegalStateException | InvalidConfigurationException | IOException e) {
