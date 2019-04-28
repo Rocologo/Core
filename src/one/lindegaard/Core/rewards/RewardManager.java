@@ -37,7 +37,7 @@ public class RewardManager implements Listener{
 			plugin.getMessages().debug("BagOfGoldItems: register events");
 			Bukkit.getPluginManager().registerEvents(this, plugin);
 		} else
-			plugin.getMessages().debug("BagOfGoldItems: could not register events");
+			plugin.getMessages().debug("BagOfGoldItems: could not register events.");
 	}
 
 	public HashMap<Integer, Double> getDroppedMoney() {

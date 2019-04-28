@@ -12,7 +12,6 @@ import one.lindegaard.Core.commands.ReloadCommand;
 import one.lindegaard.Core.commands.UpdateCommand;
 import one.lindegaard.Core.commands.VersionCommand;
 import one.lindegaard.Core.config.ConfigManager;
-//import one.lindegaard.Core.rewards.BagOfGoldItems;
 import one.lindegaard.Core.rewards.RewardManager;
 import one.lindegaard.Core.storage.DataStoreException;
 import one.lindegaard.Core.storage.DataStoreManager;
@@ -33,7 +32,6 @@ public class Core extends JavaPlugin {
 	private IDataStore mStore;
 	private DataStoreManager mStoreManager;
 	private WorldGroup mWorldGroupManager;
-	// private BagOfGoldItems mBagOfGoldItems;
 	private SpigetUpdater mSpigetUpdater;
 	private RewardManager mRewardManager;
 
