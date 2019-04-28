@@ -212,6 +212,11 @@ public class Core extends JavaPlugin {
 		return mSpigetUpdater;
 	}
 
+	/**
+	 * Get the RewardManager
+	 * 
+	 * @return 
+	 */
 	public RewardManager getRewardManager() {
 		return mRewardManager;
 	}
