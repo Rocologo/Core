@@ -24,14 +24,12 @@ import org.bukkit.plugin.Plugin;
 
 public abstract class AutoConfig {
 	
-	private Plugin plugin;
 	private File mFile;
 	private HashMap<String, String> mCategoryComments;
 	private List<String> mCategories;
 	private HashMap<String, String> mCategoryNodes;
 
 	protected AutoConfig(Plugin plugin, File file) {
-		this.plugin=plugin;
 		mFile = file;
 		mCategories = new ArrayList<String>();
 		mCategoryComments = new HashMap<String, String>();

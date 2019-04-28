@@ -13,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import one.lindegaard.Core.rewards.CustomItems;
 import one.lindegaard.Core.storage.DataStoreException;
 import one.lindegaard.Core.storage.IDataCallback;
 import one.lindegaard.Core.storage.UserNotFoundException;
@@ -45,9 +46,11 @@ public class PlayerSettingsManager implements Listener {
 			try {
 				ps = plugin.getStoreManager().loadPlayerSettings(offlinePlayer);
 			} catch (UserNotFoundException e) {
-				String worldgroup = offlinePlayer.isOnline()?plugin.getWorldGroupManager().getCurrentWorldGroup(offlinePlayer):plugin.getWorldGroupManager().getDefaultWorldgroup();
+				String worldgroup = offlinePlayer.isOnline()
+						? plugin.getWorldGroupManager().getCurrentWorldGroup(offlinePlayer)
+						: plugin.getWorldGroupManager().getDefaultWorldgroup();
 				plugin.getMessages().debug("Insert new PlayerSettings for %s to database.", offlinePlayer.getName());
-				ps = new PlayerSettings(offlinePlayer,worldgroup, plugin.getConfigManager().learningMode, false);
+				ps = new PlayerSettings(offlinePlayer, worldgroup, plugin.getConfigManager().learningMode, false);
 				setPlayerSettings(offlinePlayer, ps);
 				return ps;
 			} catch (DataStoreException e) {
@@ -99,7 +102,8 @@ public class PlayerSettingsManager implements Listener {
 		PlayerSettings ps = mPlayerSettings.get(player.getUniqueId());
 		ps.setLastKnownWorldGrp(plugin.getWorldGroupManager().getCurrentWorldGroup(player));
 		setPlayerSettings(player, ps);
-		plugin.getMessages().debug("Saving lastKnownWorldGroup: %s",plugin.getWorldGroupManager().getCurrentWorldGroup(player));
+		plugin.getMessages().debug("Saving lastKnownWorldGroup: %s",
+				plugin.getWorldGroupManager().getCurrentWorldGroup(player));
 	}
 
 	/**
@@ -113,6 +117,16 @@ public class PlayerSettingsManager implements Listener {
 			@Override
 			public void onCompleted(PlayerSettings ps) {
 				mPlayerSettings.put(offlinePlayer.getUniqueId(), ps);
+
+				if (ps.isMuted())
+					plugin.getMessages().debug("%s isMuted()", offlinePlayer.getName());
+				if (ps.isLearningMode())
+					plugin.getMessages().debug("%s is in LearningMode()", offlinePlayer.getName());
+
+				if (ps.getTexture() == null || ps.getTexture().equals("")) {
+					plugin.getMessages().debug("Store %s skin in MobHunting Skin Cache", offlinePlayer.getName());
+					new CustomItems().getPlayerHead(offlinePlayer.getUniqueId(), 1, 0);
+				}
 			}
 
 			@Override

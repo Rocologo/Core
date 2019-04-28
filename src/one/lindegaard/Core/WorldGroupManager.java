@@ -21,7 +21,7 @@ import org.bukkit.entity.Player;
  * @author Rocologo
  *
  */
-public class WorldGroup {
+public class WorldGroupManager {
 
 	private Core plugin;
 	private File file;
@@ -30,27 +30,24 @@ public class WorldGroup {
 	private HashMap<String, GameMode> defaultGameMode = new HashMap<String, GameMode>();
 	private HashMap<String, Double> startBalance = new HashMap<String, Double>();
 
-	public WorldGroup(Core plugin) {
+	public WorldGroupManager(Core plugin) {
 		this.plugin = plugin;
 		file = new File(plugin.getDataFolder(), "worldgroups.yml");
-		if (file.exists()) {
-			load();
-			save();
-		}
+		load();
 		if (worldGroups.isEmpty()) {
+			// TODO: check if worldgroups is the same as PerWorldInventory and MyPet if
+			// supported.
 			/**
-			 * if (PerWorldInventoryCompat.isSupported()) { YamlConfiguration
-			 * pwi_groups = PerWorldInventoryCompat.getWorldsFile();
-			 * ConfigurationSection section =
+			 * if (PerWorldInventoryCompat.isSupported()) { YamlConfiguration pwi_groups =
+			 * PerWorldInventoryCompat.getWorldsFile(); ConfigurationSection section =
 			 * pwi_groups.getConfigurationSection("groups"); for (String wg :
 			 * section.getKeys(false)) { plugin.getMessages().debug("PWI wg=%s",
-			 * wg); @SuppressWarnings("unchecked") List<String> worlds =
-			 * (List<String>) section.get(wg + ".worlds"); worldGroups.put(wg,
-			 * worlds); GameMode gamemode = GameMode.valueOf((String)
-			 * section.get(wg + ".default-gamemode")); defaultGameMode.put(wg,
-			 * gamemode); double startingBalance = section.getDouble(wg +
-			 * ".starting-balance"); startBalance.put(wg, startingBalance); } }
-			 * else
+			 * wg); @SuppressWarnings("unchecked") List<String> worlds = (List<String>)
+			 * section.get(wg + ".worlds"); worldGroups.put(wg, worlds); GameMode gamemode =
+			 * GameMode.valueOf((String) section.get(wg + ".default-gamemode"));
+			 * defaultGameMode.put(wg, gamemode); double startingBalance =
+			 * section.getDouble(wg + ".starting-balance"); startBalance.put(wg,
+			 * startingBalance); } } else
 			 **/
 			{
 				worldGroups.put(getDefaultWorldgroup(), Arrays.asList("world", "world_nether", "world_the_end"));
@@ -65,8 +62,19 @@ public class WorldGroup {
 				startBalance.put("creative", 3000.0);
 				defaultGameMode.put("creative", GameMode.CREATIVE);
 			}
-			save();
+		} else {
+			// check if startBalance and defaultGamemode exists for all worldGroups
+			for (String wg : worldGroups.keySet()) {
+				if (!startBalance.containsKey(wg))
+					startBalance.put(wg, 3000.0);
+				if (!defaultGameMode.containsKey(wg))
+					if (wg.equalsIgnoreCase("creative"))
+						defaultGameMode.put(wg, GameMode.CREATIVE);
+					else
+						defaultGameMode.put(wg, GameMode.SURVIVAL);
+			}
 		}
+		save();
 	}
 
 	public void add(String world) {
@@ -150,7 +158,9 @@ public class WorldGroup {
 							+ "\nWorldGroups. New worlds are added in the Default Group"
 							+ "\n----------------------------------------------------------"
 							+ "\nThese worldgroups which worlds share the players "
-							+ "\n economy balance and bank balance." + "\n ");
+							+ "\ntheir economy balance and bank-balance. If you use"
+							+ "\nMyPet, PerWorldInventory or similar, the world "
+							+ "\nshould be the grouped the same way here." + "\n");
 			plugin.getMessages().debug("Saving worldGroups");
 
 			Set<String> groups = worldGroups.keySet();
@@ -167,25 +177,48 @@ public class WorldGroup {
 	}
 
 	public void load() {
-		if (!file.exists())
-			return;
-		plugin.getMessages().debug("Loading WorldGroups");
-		try {
-			config.load(file);
-			ConfigurationSection section = config.getConfigurationSection("groups");
-			for (String wg : section.getKeys(false)) {
-				@SuppressWarnings("unchecked")
-				List<String> worlds = (List<String>) section.get(wg + ".worlds");
-				worldGroups.put(wg, worlds);
-				GameMode gamemode = GameMode.valueOf((String) section.get(wg + ".default-gamemode"));
-				defaultGameMode.put(wg, gamemode);
-				double startingBalance = section.getDouble(wg + ".starting-balance");
-				startBalance.put(wg, startingBalance);
+		if (!file.exists()) {
+			File fileBagOfGold = new File(plugin.getDataFolder(), "../BagOfGold/worldgroups.yml");
+			if (!fileBagOfGold.exists()) {
+				File fileMobHunting = new File(plugin.getDataFolder(), "../MobHunting/worldgroups.yml");
+				if (!fileMobHunting.exists()) {
+					return;
+				} else {
+					plugin.getMessages().debug("Copy WorldGroups from MobHunting.");
+					try {
+						config.load(fileMobHunting);
+					} catch (IllegalStateException | InvalidConfigurationException | IOException e) {
+						e.printStackTrace();
+					}
+				}
+			} else {
+				plugin.getMessages().debug("Copy WorldGroups from BagOfGold");
+				try {
+					config.load(fileBagOfGold);
+				} catch (IllegalStateException | InvalidConfigurationException | IOException e) {
+					e.printStackTrace();
+				}
 			}
-		} catch (IllegalStateException | InvalidConfigurationException | IOException e) {
-			e.printStackTrace();
+		} else {
+			plugin.getMessages().debug("Loading WorldGroups from BagOfGoldCore.");
+			try {
+				config.load(file);
+			} catch (IllegalStateException | InvalidConfigurationException | IOException e) {
+				e.printStackTrace();
+			}
+
 		}
 
+		ConfigurationSection section = config.getConfigurationSection("groups");
+		for (String wg : section.getKeys(false)) {
+			@SuppressWarnings("unchecked")
+			List<String> worlds = (List<String>) section.get(wg + ".worlds");
+			worldGroups.put(wg, worlds);
+			GameMode gamemode = GameMode.valueOf((String) section.get(wg + ".default-gamemode"));
+			defaultGameMode.put(wg, gamemode);
+			double startingBalance = section.getDouble(wg + ".starting-balance");
+			startBalance.put(wg, startingBalance);
+		}
 	}
 
 }

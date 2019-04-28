@@ -30,9 +30,8 @@ public class Core extends JavaPlugin {
 	private CommandDispatcher mCommandDispatcher;
 	private IDataStore mStore;
 	private DataStoreManager mStoreManager;
-	private WorldGroup mWorldGroupManager;
+	private WorldGroupManager mWorldGroupManager;
 	private SpigetUpdater mSpigetUpdater;
-	//private RewardManager mRewardManager;
 
 	private boolean mInitialized = false;
 
@@ -54,7 +53,7 @@ public class Core extends JavaPlugin {
 		} else
 			throw new RuntimeException(instance.getMessages().getString("bagofgoldcore.config.fail"));
 
-		mWorldGroupManager = new WorldGroup(this);
+		mWorldGroupManager = new WorldGroupManager(this);
 		mWorldGroupManager.load();
 
 		if (mConfig.databaseType.equalsIgnoreCase("mysql"))
@@ -203,7 +202,7 @@ public class Core extends JavaPlugin {
 	 * 
 	 * @return
 	 */
-	public WorldGroup getWorldGroupManager() {
+	public WorldGroupManager getWorldGroupManager() {
 		return mWorldGroupManager;
 	}
 
