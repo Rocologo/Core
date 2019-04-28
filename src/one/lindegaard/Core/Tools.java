@@ -153,4 +153,8 @@ public class Tools {
 			return new Location(null, x, y, z, yaw, pitch);
 	}
 
+	public static String trimSignText(String string) {
+		return string.length() > 15 ? string.substring(0, 14).trim() : string;
+	}
+
 }
