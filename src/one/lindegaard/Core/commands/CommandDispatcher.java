@@ -116,10 +116,10 @@ public class CommandDispatcher implements CommandExecutor, TabCompleter {
 
 		if (subcommand != null) {
 			plugin.getMessages().senderSendMessage(sender,
-					ChatColor.RED + plugin.getMessages().getString("bagofgold.commandscore.base.unknowncommand", "command",
+					ChatColor.RED + plugin.getMessages().getString("bagofgoldcore.commandscore.base.unknowncommand", "command",
 							ChatColor.RESET + "/" + label + " " + ChatColor.GOLD + subcommand));
 			plugin.getMessages().senderSendMessage(sender,
-					plugin.getMessages().getString("bagofgold.commands.base.validcommands"));
+					plugin.getMessages().getString("bagofgoldcore.commands.base.validcommands"));
 		} else {
 			plugin.getMessages().senderSendMessage(sender,
 					ChatColor.RED + plugin.getMessages().getString("bagofgoldcore.commands.base.nocommand", "command",

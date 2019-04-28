@@ -79,7 +79,7 @@ public class CustomItems {
 			sk = new Skins_1_11_R1();
 		} else if (version.equals("v1_10_R1")) {
 			sk = new Skins_1_10_R1();
-		} else if (version.equals("v1_9_21")) {
+		} else if (version.equals("v1_9_R2")) {
 			sk = new Skins_1_9_R1();
 		} else if (version.equals("v1_9_R1")) {
 			sk = new Skins_1_9_R1();
@@ -149,7 +149,7 @@ public class CustomItems {
 				if (sk != null) {
 					String[] skinOnline = sk.getSkin(player);
 					if (skinOnline != null && !skinOnline.equals(skinCache)) {
-							plugin.getMessages().debug("%s has changed skin, updating MobHunting Skin cache",
+							plugin.getMessages().debug("%s has changed skin, updating skin cache",
 									player.getName());
 							ps.setTexture(skinOnline[0]);
 							ps.setSignature(skinOnline[1]);
@@ -160,7 +160,7 @@ public class CustomItems {
 			}
 			skinCache[0] = ps.getTexture();
 			skinCache[1] = ps.getSignature();
-			plugin.getMessages().debug("%s using skin from MobHunting Skin Cache", offlinePlayer.getName());
+			plugin.getMessages().debug("%s using skin from skin Cache", offlinePlayer.getName());
 		}
 
 		skull = new ItemStack(getCustomtexture(UUID.fromString(Reward.MH_REWARD_KILLED_UUID), offlinePlayer.getName(),
@@ -237,7 +237,7 @@ public class CustomItems {
 		skullMeta.setLore(new ArrayList<String>(Arrays.asList("Hidden:" + offlinePlayer.getName(),
 				"Hidden:" + String.format(Locale.ENGLISH, "%.5f", money), "Hidden:" + Reward.MH_REWARD_KILLER_UUID,
 				money == 0 ? "Hidden:" : "Hidden:" + UUID.randomUUID(), "Hidden:" + uuid,
-				plugin.getMessages().getString("mobhunting.reward.name"))));
+				plugin.getMessages().getString("bagofgoldcore..reward.name"))));
 		ChatColor color = ChatColor.GOLD;
 		try {
 			color = ChatColor.valueOf(plugin.getConfigManager().dropMoneyOnGroundTextColor.toUpperCase());
@@ -275,7 +275,7 @@ public class CustomItems {
 		skullMeta.setLore(new ArrayList<String>(Arrays.asList("Hidden:" + name,
 				"Hidden:" + String.format(Locale.ENGLISH, "%.5f", money), "Hidden:" + Reward.MH_REWARD_KILLER_UUID,
 				money == 0 ? "Hidden:" : "Hidden:" + UUID.randomUUID(), "Hidden:" + uuid,
-				plugin.getMessages().getString("mobhunting.reward.name"))));
+				plugin.getMessages().getString("bagofgoldcore.reward.name"))));
 		skullMeta.setOwningPlayer(Bukkit.getOfflinePlayer(uuid));
 		if (money == 0) {
 			skullMeta.setDisplayName(name);
@@ -341,7 +341,7 @@ public class CustomItems {
 			skullMeta.setLore(new ArrayList<String>(
 					Arrays.asList("Hidden:" + mDisplayName, "Hidden:" + String.format(Locale.ENGLISH, "%.5f", money),
 							"Hidden:" + mPlayerUUID, money == 0 ? "Hidden:" : "Hidden:" + uniqueRewardUuid,
-							"Hidden:" + skinUuid, plugin.getMessages().getString("mobhunting.reward.name"))));
+							"Hidden:" + skinUuid, plugin.getMessages().getString("bagofgoldcore.reward.name"))));
 
 		ChatColor color = ChatColor.GOLD;
 		try {
@@ -426,7 +426,7 @@ public class CustomItems {
 					"Hidden:" + reward.getMoney(), "Hidden:" + reward.getRewardType(),
 					reward.getMoney() == 0 ? "Hidden:" : "Hidden:" + UUID.randomUUID(),
 					"Hidden:" + reward.getSkinUUID(),
-					Core.getInstance().getMessages().getString("bagofgold.reward.name"))));
+					Core.getInstance().getMessages().getString("bagofgoldcore.reward.name"))));
 
 		if (reward.getMoney() == 0)
 			skullMeta.setDisplayName(

@@ -57,7 +57,7 @@ public class SpigetUpdater {
 	public void hourlyUpdateCheck(final CommandSender sender, boolean updateCheck, final boolean silent) {
 		long seconds = Core.getInstance().getConfigManager().checkEvery;
 		if (seconds < 900) {
-			Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[MobHunting]" + ChatColor.RED
+			Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGOldCore]" + ChatColor.RED
 					+ "[Warning] check_every in your config.yml is too low. A low number can cause server crashes. The number is raised to 900 seconds = 15 minutes.");
 			seconds = 900;
 		}
@@ -88,10 +88,10 @@ public class SpigetUpdater {
 			@Override
 			public void run() {
 				if (count++ > 20) {
-					Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[MobHunting]" + ChatColor.RED
+					Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.RED
 							+ " No updates found. (No response from server after 20s)");
 					plugin.getMessages().senderSendMessage(sender, ChatColor.GREEN
-							+ plugin.getMessages().getString("mobhunting.commands.update.could-not-update"));
+							+ plugin.getMessages().getString("bagofgoldcore.commands.update.could-not-update"));
 					plugin.getMessages().debug("Update error: %s", spigetUpdate.getFailReason().toString());
 					this.cancel();
 				} else {
@@ -99,12 +99,12 @@ public class SpigetUpdater {
 					if (succes) {
 						if (OS.indexOf("Win") >= 0) {
 							File downloadedJar = new File("plugins/update/" + currentJarFile);
-							File newJar = new File("plugins/update/MobHunting-" + newDownloadVersion + ".jar");
+							File newJar = new File("plugins/update/BagOfGoldCore-" + newDownloadVersion + ".jar");
 							if (newJar.exists())
 								newJar.delete();
 							downloadedJar.renameTo(newJar);
 							plugin.getMessages().senderSendMessage(sender, ChatColor.GREEN
-									+ plugin.getMessages().getString("mobhunting.commands.update.complete"));
+									+ plugin.getMessages().getString("bagofgoldcore.commands.update.complete"));
 						} else {
 							if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
 								File currentJar = new File("plugins/" + currentJarFile);
@@ -116,13 +116,13 @@ public class SpigetUpdater {
 								if (!disabledJar.exists()) {
 									currentJar.renameTo(disabledJar);
 									File downloadedJar = new File("plugins/update/" + currentJarFile);
-									File newJar = new File("plugins/MobHunting-" + newDownloadVersion + ".jar");
+									File newJar = new File("plugins/BagOfGoldCore-" + newDownloadVersion + ".jar");
 									downloadedJar.renameTo(newJar);
 									plugin.getMessages().debug("Moved plugins/update/" + currentJarFile
-											+ " to plugins/MobHunting-" + newDownloadVersion + ".jar");
+											+ " to plugins/BagOfGoldCore-" + newDownloadVersion + ".jar");
 									updateAvailable = UpdateStatus.RESTART_NEEDED;
 									plugin.getMessages().senderSendMessage(sender, ChatColor.GREEN
-											+ plugin.getMessages().getString("mobhunting.commands.update.complete"));
+											+ plugin.getMessages().getString("bagofgoldcore.commands.update.complete"));
 								}
 							}
 						}
@@ -144,12 +144,12 @@ public class SpigetUpdater {
 	 */
 	public void checkForUpdate(final CommandSender sender, final boolean silent) {
 		if (!silent)
-			Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[MobHunting] " + ChatColor.RESET
-					+ plugin.getMessages().getString("mobhunting.commands.update.check"));
+			Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.RESET
+					+ plugin.getMessages().getString("bagofgoldcore.commands.update.check"));
 		if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
-			spigetUpdate = new SpigetUpdate(plugin, 3582);
+			spigetUpdate = new SpigetUpdate(plugin, 66905);
 			spigetUpdate.setVersionComparator(VersionComparator.EQUAL);
-			spigetUpdate.setUserAgent("MobHunting-" + plugin.getDescription().getVersion());
+			spigetUpdate.setUserAgent("BagOfGoldCore-" + plugin.getDescription().getVersion());
 
 			spigetUpdate.checkForUpdate(new UpdateCallback() {
 
@@ -160,15 +160,15 @@ public class SpigetUpdater {
 					updateAvailable = isUpdateNewerVersion(newVersion);
 					if (updateAvailable == UpdateStatus.AVAILABLE) {
 						newDownloadVersion = newVersion;
-						sender.sendMessage(ChatColor.GOLD + "[MobHunting] " + ChatColor.GREEN + plugin.getMessages()
-								.getString("mobhunting.commands.update.version-found", "newversion", newVersion));
+						sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN + plugin.getMessages()
+								.getString("bagofgoldcore.commands.update.version-found", "newversion", newVersion));
 						if (plugin.getConfigManager().autoupdate) {
 							downloadAndUpdateJar(sender);
-							sender.sendMessage(ChatColor.GOLD + "[MobHunting] " + ChatColor.GREEN
-									+ plugin.getMessages().getString("mobhunting.commands.update.complete"));
+							sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN
+									+ plugin.getMessages().getString("bagofgoldcore.commands.update.complete"));
 						} else
-							sender.sendMessage(ChatColor.GOLD + "[MobHunting] " + ChatColor.GREEN
-									+ plugin.getMessages().getString("mobhunting.commands.update.help"));
+							sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN
+									+ plugin.getMessages().getString("bagofgoldcore.commands.update.help"));
 					}
 				}
 
@@ -176,8 +176,8 @@ public class SpigetUpdater {
 				public void upToDate() {
 					//// Plugin is up-to-date
 					if (!silent)
-						sender.sendMessage(ChatColor.GOLD + "[MobHunting] " + ChatColor.RESET
-								+ plugin.getMessages().getString("mobhunting.commands.update.no-update"));
+						sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.RESET
+								+ plugin.getMessages().getString("bagofgoldcore.commands.update.no-update"));
 				}
 			});
 		}

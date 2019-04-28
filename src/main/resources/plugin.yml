@@ -1,10 +1,48 @@
 name: BagOfGoldCore
 main: one.lindegaard.Core.Core
 version: ${version}
-description: BagOfGoldCore is an Core Library for Rocologos plugins (BagOfGold and MobHunting). 
-dev-url: http://dev.bukkit.org/server-mods/bagofgoldcore/
+description: BagOfGoldCore is a shared Library for BagOfGold and MobHunting. 
+dev-url: https://github.com/Rocologo/Core
 author: Rocologo
 depend: []
-loadbefore: [bagofgold, MobHunting]
+loadbefore: [BagOfGold, MobHunting]
 softdepend: []
 api-version: 1.13
+
+commands:
+  bagcore:
+    description: Allows you to configure BagOfGoldCore
+    permission: bagofgoldcore.cmd
+    aliases: [bagc]
+    usage: /<command> command
+
+permissions:
+  bagcore.cmd:
+    description: Allows a player to use the mobhunt command
+    default: true
+  bagcore.update:
+    description: Allows a player to update the plugin
+    default: op
+    children:
+      bagcore.cmd: true
+  bagcore.reload:
+    description: Allows you to reload the configuration
+    default: op
+    children:
+      bagcore.cmd: true
+  bagcore.version:
+    description: Allows you to get plugin version.
+    default: true
+    children:
+      bagcore.cmd: true
+  bagcore.debug:
+    description: Allows you to enable/disable debugmode and see debug information in the server console.
+    default: op
+    children:
+      bagcore.cmd: true
+  bagcore.mute:
+    description: Allows you to mute/unmute BagOfGoldCore sending messages.
+    default: true
+    children:
+      bagcore.cmd: true
+  

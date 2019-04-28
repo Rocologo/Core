@@ -1,4 +1,4 @@
-bagofgoldcore.command.base.description=BagOfGoldCore Version 
+bagofgoldcore.command.base.description=BagOfGoldCore - a library for BagOfGold items. 
 bagofgoldcore.config.fail=There was a problem loading the BagOfGold config
 
 bagofgoldcore.commands.base.help.commands=Commands:
@@ -9,15 +9,13 @@ bagofgoldcore.commands.base.noconsole=${command} cannot be called from the conso
 bagofgoldcore.commands.base.nopermission=You do not have permission (${perm}) to use ${command}
 bagofgoldcore.commands.base.unknowncommand=Unknown command: &4${command}&a
 bagofgoldcore.commands.base.unknown_playername=${playername} is unknown on this server
-bagofgoldcore.commands.base.morehelp=Type /bagofgold &6<command> help&f to get help using a specific command. 
+bagofgoldcore.commands.base.morehelp=Type /bagc &6<command> help&f to get help using a specific command. 
 bagofgoldcore.commands.base.usage=Usage: ${usage}
 bagofgoldcore.commands.base.validcommands=Valid commands are:
 bagofgoldcore.commands.base.error=An internal error occurred while executing that command.
 bagofgoldcore.commands.base.not_a_number=&4${number}&a is not a number
 bagofgoldcore.commands.base.not_a_location=&4${xpos} ${ypos} ${zpos}&a is not a proper location
 bagofgoldcore.commands.base.playername-missing=The playername is missing or ${player} is not online
-bagofgoldcore.commands.base.unknown_stattype=Unknown StatType &b${stattype}
-bagofgoldcore.commands.base.unknown_timeperiod=Unknown TimePeriod &b${period}
 bagofgoldcore.commands.debug.description=Enable/Disable debug information in server console.
 bagofgoldcore.commands.debug.disabled=Debugmode disabled.
 bagofgoldcore.commands.debug.enabled=Debugmode enabled. Check server console.
@@ -30,10 +28,10 @@ bagofgoldcore.commands.update.could-not-update=The plugin could not be updated. 
 bagofgoldcore.commands.update.no-update=No update found.
 bagofgoldcore.commands.update.check=Checking for new updates...
 bagofgoldcore.commands.update.version-found=new version available: ${newversion}
-bagofgoldcore.commands.update.help=Please type '/bagofgold update' to update. 
+bagofgoldcore.commands.update.help=Please type '/bagc update' to update. 
 bagofgoldcore.commands.version.description=Show BagOfGold's version number.
-bagofgoldcore.commands.version.currentversion=This server is running 'BagOfGold ${currentversion}'.
-bagofgoldcore.commands.version.newversion=Version ${newversion} is available. Use '/bagofgold update' to update the plugin.
+bagofgoldcore.commands.version.currentversion=This server is running 'BagOfGoldCore ${currentversion}'.
+bagofgoldcore.commands.version.newversion=Version ${newversion} is available. Use '/bagc update' to update the plugin.
 
 bagofgoldcore.reward.name=Bag of gold
 

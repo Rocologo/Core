@@ -2,6 +2,7 @@ package one.lindegaard.Core;
 
 import java.io.File;
 
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import one.lindegaard.Core.commands.CommandDispatcher;
@@ -12,6 +13,7 @@ import one.lindegaard.Core.commands.UpdateCommand;
 import one.lindegaard.Core.commands.VersionCommand;
 import one.lindegaard.Core.config.ConfigManager;
 import one.lindegaard.Core.rewards.BagOfGoldItems;
+import one.lindegaard.Core.rewards.RewardManager;
 import one.lindegaard.Core.storage.DataStoreException;
 import one.lindegaard.Core.storage.DataStoreManager;
 import one.lindegaard.Core.storage.IDataStore;
@@ -33,19 +35,20 @@ public class Core extends JavaPlugin {
 	private WorldGroup mWorldGroupManager;
 	private BagOfGoldItems mBagOfGoldItems;
 	private SpigetUpdater mSpigetUpdater;
+	private RewardManager mRewardManager;
 
 	private boolean mInitialized = false;
 
 	@Override
 	public void onLoad() {
+		instance = this;
+		mMessages = new Messages(this);
 	}
 
 	@Override
 	public void onEnable() {
 
-		instance = this;
 
-		mMessages = new Messages(this);
 		mConfig = new ConfigManager(this, mFile);
 
 		if (mConfig.loadConfig()) {
@@ -53,24 +56,10 @@ public class Core extends JavaPlugin {
 				mConfig.backupConfig(mFile);
 			mConfig.saveConfig();
 		} else
-			throw new RuntimeException(instance.getMessages().getString("bagofgold.config.fail"));
+			throw new RuntimeException(instance.getMessages().getString("bagofgoldcore.config.fail"));
 
 		mWorldGroupManager = new WorldGroup(this);
 		mWorldGroupManager.load();
-		
-		mSpigetUpdater = new SpigetUpdater(this);
-		mSpigetUpdater.setCurrentJarFile(this.getFile().getName());
-		
-		// Register commands
-		mCommandDispatcher = new CommandDispatcher(this, "bagofgold",
-				instance.getMessages().getString("bagofgold.command.base.description") + getDescription().getVersion());
-		getCommand("bagofgold").setExecutor(mCommandDispatcher);
-		getCommand("bagofgold").setTabCompleter(mCommandDispatcher);
-		mCommandDispatcher.registerCommand(new ReloadCommand(this));
-		mCommandDispatcher.registerCommand(new UpdateCommand(this));
-		mCommandDispatcher.registerCommand(new VersionCommand(this));
-		mCommandDispatcher.registerCommand(new DebugCommand(this));
-		mCommandDispatcher.registerCommand(new MuteCommand(this));
 
 		if (mConfig.databaseType.equalsIgnoreCase("mysql"))
 			mStore = new MySQLDataStore(this);
@@ -90,9 +79,43 @@ public class Core extends JavaPlugin {
 			return;
 		}
 
+		mSpigetUpdater = new SpigetUpdater(this);
+		mSpigetUpdater.setCurrentJarFile(this.getFile().getName());
+
 		mStoreManager = new DataStoreManager(this, mStore);
 
 		mPlayerSettingsManager = new PlayerSettingsManager(this);
+		
+		mRewardManager = new RewardManager(this);
+
+		// Register commands
+		mCommandDispatcher = new CommandDispatcher(
+				this, 
+				"bagcore",
+				instance.
+				getMessages().
+				getString("bagofgoldcore.command.base.description")
+						+ getDescription().getVersion());
+		getCommand("bagc").
+			setExecutor(mCommandDispatcher);
+		getCommand("bagc").
+			setTabCompleter(mCommandDispatcher);
+		mCommandDispatcher.registerCommand(new ReloadCommand(this));
+		mCommandDispatcher.registerCommand(new UpdateCommand(this));
+		mCommandDispatcher.registerCommand(new VersionCommand(this));
+		mCommandDispatcher.registerCommand(new DebugCommand(this));
+		mCommandDispatcher.registerCommand(new MuteCommand(this));
+
+		// Check for new MobHuntig updates using Spiget.org
+		mSpigetUpdater.hourlyUpdateCheck(getServer().getConsoleSender(), mConfig.updateCheck, false);
+
+		// Handle online players when server admin do a /reload or /mh reload
+		if (Tools.getOnlinePlayersAmount() > 0) {
+			getMessages().debug("Reloading %s player settings from the database", Tools.getOnlinePlayersAmount());
+			for (Player player : Tools.getOnlinePlayers()) {
+				mPlayerSettingsManager.load(player);
+			}
+		}
 
 		mInitialized = true;
 
@@ -100,6 +123,7 @@ public class Core extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
+		getMessages().debug("Disabling BagOfGoldCore initiated");
 		if (!mInitialized)
 			return;
 
@@ -111,8 +135,10 @@ public class Core extends JavaPlugin {
 		} catch (DataStoreException e) {
 			e.printStackTrace();
 		}
+		
+		mWorldGroupManager.save();
 
-		instance.getMessages().debug("BagOfGold disabled.");
+		instance.getMessages().debug("Core disabled.");
 	}
 
 	// ************************************************************************************
@@ -192,10 +218,12 @@ public class Core extends JavaPlugin {
 	public BagOfGoldItems getBagOfGoldItems() {
 		return mBagOfGoldItems;
 	}
-	
+
 	public SpigetUpdater getSpigetUpdater() {
 		return mSpigetUpdater;
 	}
-
+	public RewardManager getRewardManager() {
+		return mRewardManager;
+	}
 
 }
