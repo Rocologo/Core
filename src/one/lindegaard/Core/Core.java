@@ -215,10 +215,6 @@ public class Core extends JavaPlugin {
 		return mWorldGroupManager;
 	}
 
-	public BagOfGoldItems getBagOfGoldItems() {
-		return mBagOfGoldItems;
-	}
-
 	public SpigetUpdater getSpigetUpdater() {
 		return mSpigetUpdater;
 	}
