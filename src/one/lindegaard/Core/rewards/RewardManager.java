@@ -12,7 +12,9 @@ import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import one.lindegaard.Core.Core;
@@ -195,5 +197,22 @@ public class RewardManager implements Listener{
 		}
 	}
 
+	public boolean canPickupMoney(Player player) {
+		if (player.getInventory().firstEmpty() != -1)
+			return true;
+		for (int slot = 0; slot < player.getInventory().getSize(); slot++) {
+			if (slot >= 36 && slot <= 40)
+				continue;
+			ItemStack is = player.getInventory().getItem(slot);
+			if (Reward.isReward(is)) {
+				Reward rewardInSlot = Reward.getReward(is);
+				if ((rewardInSlot.isBagOfGoldReward() || rewardInSlot.isItemReward())) {
+					if (rewardInSlot.getMoney() < plugin.getConfigManager().limitPerBag)
+						return true;
+				}
+			}
+		}
+		return false;
+	}
 	
 }

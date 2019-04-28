@@ -243,24 +243,6 @@ public class BagOfGoldItems implements Listener {
 		return amountInInventory;
 	}
 
-	public boolean canPickupMoney(Player player) {
-		if (player.getInventory().firstEmpty() != -1)
-			return true;
-		for (int slot = 0; slot < player.getInventory().getSize(); slot++) {
-			if (slot >= 36 && slot <= 40)
-				continue;
-			ItemStack is = player.getInventory().getItem(slot);
-			if (Reward.isReward(is)) {
-				Reward rewardInSlot = Reward.getReward(is);
-				if ((rewardInSlot.isBagOfGoldReward() || rewardInSlot.isItemReward())) {
-					if (rewardInSlot.getMoney() < plugin.getConfigManager().limitPerBag)
-						return true;
-				}
-			}
-		}
-		return false;
-	}
-
 	public double getSpaceForBagOfGoldMoney(Player player) {
 		double space = 0;
 		for (int slot = 0; slot < player.getInventory().getSize(); slot++) {
@@ -294,5 +276,24 @@ public class BagOfGoldItems implements Listener {
 		}
 		return false;
 	}
+
+	public boolean canPickupMoney(Player player) {
+		if (player.getInventory().firstEmpty() != -1)
+			return true;
+		for (int slot = 0; slot < player.getInventory().getSize(); slot++) {
+			if (slot >= 36 && slot <= 40)
+				continue;
+			ItemStack is = player.getInventory().getItem(slot);
+			if (Reward.isReward(is)) {
+				Reward rewardInSlot = Reward.getReward(is);
+				if ((rewardInSlot.isBagOfGoldReward() || rewardInSlot.isItemReward())) {
+					if (rewardInSlot.getMoney() < plugin.getConfigManager().limitPerBag)
+						return true;
+				}
+			}
+		}
+		return false;
+	}
+
 
 }
