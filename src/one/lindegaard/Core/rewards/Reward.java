@@ -22,12 +22,11 @@ import org.bukkit.metadata.MetadataValue;
 import one.lindegaard.Core.Core;
 import one.lindegaard.Core.mobs.MinecraftMob;
 
-
 public class Reward {
 
 	public final static String MH_REWARD_DATA = "MH:HiddenRewardData";
 	// Unique random generated UUID for "Bag of gold" rewards
-	
+
 	public final static String MH_REWARD_BAG_OF_GOLD_UUID = "b3f74fad-429f-4801-9e31-b8879cbae96f";
 	// Unique random generated UUID for MobHead/Playerhead rewards
 	public final static String MH_REWARD_KILLED_UUID = "2351844f-f400-4fa4-9642-35169c5b048a";

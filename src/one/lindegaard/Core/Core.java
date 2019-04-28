@@ -12,7 +12,6 @@ import one.lindegaard.Core.commands.ReloadCommand;
 import one.lindegaard.Core.commands.UpdateCommand;
 import one.lindegaard.Core.commands.VersionCommand;
 import one.lindegaard.Core.config.ConfigManager;
-import one.lindegaard.Core.rewards.RewardManager;
 import one.lindegaard.Core.storage.DataStoreException;
 import one.lindegaard.Core.storage.DataStoreManager;
 import one.lindegaard.Core.storage.IDataStore;
@@ -33,7 +32,7 @@ public class Core extends JavaPlugin {
 	private DataStoreManager mStoreManager;
 	private WorldGroup mWorldGroupManager;
 	private SpigetUpdater mSpigetUpdater;
-	private RewardManager mRewardManager;
+	//private RewardManager mRewardManager;
 
 	private boolean mInitialized = false;
 
@@ -83,7 +82,7 @@ public class Core extends JavaPlugin {
 
 		mPlayerSettingsManager = new PlayerSettingsManager(this);
 
-		mRewardManager = new RewardManager(this);
+		//mRewardManager = new RewardManager(this);
 
 		// Register commands
 		mCommandDispatcher = new CommandDispatcher(this, "bagcore",
@@ -210,15 +209,6 @@ public class Core extends JavaPlugin {
 
 	public SpigetUpdater getSpigetUpdater() {
 		return mSpigetUpdater;
-	}
-
-	/**
-	 * Get the RewardManager
-	 * 
-	 * @return 
-	 */
-	public RewardManager getRewardManager() {
-		return mRewardManager;
 	}
 
 }

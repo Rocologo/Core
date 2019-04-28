@@ -18,27 +18,19 @@ import org.bukkit.metadata.FixedMetadataValue;
 import one.lindegaard.Core.Core;
 import one.lindegaard.Core.Tools;
 
-public class BagOfGoldItems implements Listener {
+public class BagOfGoldItems_slettes implements Listener {
 
 	Core plugin;
 
-	public BagOfGoldItems() {
+	public BagOfGoldItems_slettes() {
 		this.plugin = Core.getInstance();
-
 	}
 
 	public String format(double money) {
 		return Tools.format(money);
 	}
 
-	public boolean isBagOfGoldStyle() {
-		return plugin.getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("SKULL")
-				|| plugin.getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("ITEM")
-				|| plugin.getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("KILLED")
-				|| plugin.getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("KILLER");
-	}
-
-	/**
+		/**
 	 * setDisplayNameAndHiddenLores: add the Display name and the (hidden) Lores.
 	 * The lores identifies the reward and contain secret information.
 	 * 
@@ -210,7 +202,7 @@ public class BagOfGoldItems implements Listener {
 
 			item = location.getWorld().dropItem(location, is);
 			if (item != null) {
-				Core.getInstance().getRewardManager().getDroppedMoney().put(item.getEntityId(), nextBag);
+				//Core.getInstance().getRewardManager().getDroppedMoney().put(item.getEntityId(), nextBag);
 				item.setMetadata(Reward.MH_REWARD_DATA,
 						new FixedMetadataValue(plugin, new Reward(
 								plugin.getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("ITEM") ? ""
@@ -221,9 +213,9 @@ public class BagOfGoldItems implements Listener {
 								? format(nextBag)
 								: Reward.getReward(is).getDisplayname() + " (" + format(nextBag) + ")"));
 				item.setCustomNameVisible(true);
-				plugin.getMessages().debug("%s dropped %s on the ground as item %s (# of rewards=%s)(3)",
-						player.getName(), format(nextBag), plugin.getConfigManager().dropMoneyOnGroundItemtype,
-						Core.getInstance().getRewardManager().getDroppedMoney().size());
+				//plugin.getMessages().debug("%s dropped %s on the ground as item %s (# of rewards=%s)(3)",
+				//		player.getName(), format(nextBag), plugin.getConfigManager().dropMoneyOnGroundItemtype,
+				//		Core.getInstance().getRewardManager().getDroppedMoney().size());
 			}
 		}
 	}
@@ -287,13 +279,12 @@ public class BagOfGoldItems implements Listener {
 			if (Reward.isReward(is)) {
 				Reward rewardInSlot = Reward.getReward(is);
 				if ((rewardInSlot.isBagOfGoldReward() || rewardInSlot.isItemReward())) {
-					if (rewardInSlot.getMoney() < plugin.getConfigManager().limitPerBag)
+					if (rewardInSlot.getMoney() < Core.getInstance().getConfigManager().limitPerBag)
 						return true;
 				}
 			}
 		}
 		return false;
 	}
-
 
 }

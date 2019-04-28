@@ -20,7 +20,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import one.lindegaard.Core.Core;
 import one.lindegaard.Core.Materials.Materials;
 
-public class RewardManager implements Listener{
+public class RewardManager_slettes {
 
 	Core plugin;
 	private File file;
@@ -29,15 +29,23 @@ public class RewardManager implements Listener{
 	private HashMap<Integer, Double> droppedMoney = new HashMap<Integer, Double>();
 	private HashMap<UUID, Reward> placedMoney_Reward = new HashMap<UUID, Reward>();
 	private HashMap<UUID, Location> placedMoney_Location = new HashMap<UUID, Location>();
+	
+	//private BagOfGoldItems mBagOfGoldItems;
+	//private GringottsItems mGringottsItems;
 
-	public RewardManager(Core plugin) {
+	public RewardManager_slettes(Core plugin) {
 		this.plugin = plugin;
 		file = new File(plugin.getDataFolder(), "rewards.yml");
 		loadAllStoredRewardsFromMobHunting();
 		loadAllStoredRewards();
 		if (isBagOfGoldStyle()) {
-			plugin.getMessages().debug("BagOfGoldItems: register events");
-			Bukkit.getPluginManager().registerEvents(this, plugin);
+			plugin.getMessages().debug("Core, RewardManager: Register BagOfGold events");
+			//mBagOfGoldItems = new BagOfGoldItems();
+			//Bukkit.getPluginManager().registerEvents(new BagOfGoldItems(), plugin);
+		} else if (isGringottsStyle()) {
+			plugin.getMessages().debug("Core, RewardManager: Register Gringotts events");
+			//mGringottsItems = new GringottsItems();
+			//Bukkit.getPluginManager().registerEvents(new GringottsItems(), plugin);
 		} else
 			plugin.getMessages().debug("BagOfGoldItems: could not register events.");
 	}
@@ -53,13 +61,10 @@ public class RewardManager implements Listener{
 	public HashMap<UUID, Location> getLocations() {
 		return placedMoney_Location;
 	}
-
-	public boolean isBagOfGoldStyle() {
-		return plugin.getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("SKULL")
-				|| plugin.getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("ITEM")
-				|| plugin.getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("KILLED")
-				|| plugin.getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("KILLER");
-	}
+	
+	//public BagOfGoldItems getBagOfGoldItems() {
+	//	return mBagOfGoldItems;
+	//}
 
 	public void saveReward(UUID uuid) {
 		try {
@@ -197,22 +202,15 @@ public class RewardManager implements Listener{
 		}
 	}
 
-	public boolean canPickupMoney(Player player) {
-		if (player.getInventory().firstEmpty() != -1)
-			return true;
-		for (int slot = 0; slot < player.getInventory().getSize(); slot++) {
-			if (slot >= 36 && slot <= 40)
-				continue;
-			ItemStack is = player.getInventory().getItem(slot);
-			if (Reward.isReward(is)) {
-				Reward rewardInSlot = Reward.getReward(is);
-				if ((rewardInSlot.isBagOfGoldReward() || rewardInSlot.isItemReward())) {
-					if (rewardInSlot.getMoney() < plugin.getConfigManager().limitPerBag)
-						return true;
-				}
-			}
-		}
-		return false;
+	public boolean isBagOfGoldStyle() {
+		return plugin.getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("SKULL")
+				|| plugin.getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("ITEM")
+				|| plugin.getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("KILLED")
+				|| plugin.getConfigManager().dropMoneyOnGroundItemtype.equalsIgnoreCase("KILLER");
 	}
-	
+
+	public boolean isGringottsStyle() {
+		return plugin.getConfigManager().dropMoneyOnGroundItemtype.equals("GRINGOTTS_STYLE");
+	}
+
 }
