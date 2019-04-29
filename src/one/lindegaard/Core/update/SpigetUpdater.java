@@ -5,6 +5,8 @@ import java.io.File;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.inventivetalent.update.spiget.SpigetUpdate;
 import org.inventivetalent.update.spiget.UpdateCallback;
@@ -15,16 +17,16 @@ import one.lindegaard.Core.update.UpdateStatus;
 
 public class SpigetUpdater {
 
-	private Core plugin;
+	private static Core plugin;
 
 	public SpigetUpdater(Core plugin) {
 		this.plugin = plugin;
 	}
 
 	private static SpigetUpdate spigetUpdate = null;
-	private UpdateStatus updateAvailable = UpdateStatus.UNKNOWN;
-	private String currentJarFile = "";
-	private String newDownloadVersion = "";
+	private static UpdateStatus updateAvailable = UpdateStatus.UNKNOWN;
+	private static String currentJarFile = "";
+	private static String newDownloadVersion = "";
 
 	public SpigetUpdate getSpigetUpdate() {
 		return spigetUpdate;
@@ -78,7 +80,7 @@ public class SpigetUpdater {
 	 * @param sender
 	 * @return
 	 */
-	public boolean downloadAndUpdateJar(CommandSender sender) {
+	public static boolean downloadAndUpdateJar(CommandSender sender) {
 		final String OS = System.getProperty("os.name");
 		boolean succes = spigetUpdate.downloadUpdate();
 
@@ -139,8 +141,7 @@ public class SpigetUpdater {
 	 * 
 	 * @param sender
 	 * @param updateCheck
-	 * @param silent
-	 *            - if true the player will not get the status in Game
+	 * @param silent      - if true the player will not get the status in Game
 	 */
 	public void checkForUpdate(final CommandSender sender, final boolean silent) {
 		if (!silent)
@@ -229,6 +230,31 @@ public class SpigetUpdater {
 			return UpdateStatus.AVAILABLE;
 		else
 			return UpdateStatus.NOT_AVAILABLE;
+	}
+
+	public static void ForceDownloadJar(Plugin plugin) {
+		ConsoleCommandSender sender = Bukkit.getConsoleSender();
+		SpigetUpdate spigetUpdate = new SpigetUpdate(plugin, 66905);
+		spigetUpdate.setVersionComparator(VersionComparator.EQUAL);
+		spigetUpdate.setUserAgent("BagOfGold");
+
+		spigetUpdate.checkForUpdate(new UpdateCallback() {
+
+			@Override
+			public void updateAvailable(String newVersion, String downloadUrl, boolean hasDirectDownload) {
+				//// VersionComparator.EQUAL handles all updates as new, so I have to check the
+				//// version number manually
+					newDownloadVersion = newVersion;
+					sender.sendMessage(
+							ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN + "Downloaded BagOfGoldCore");
+					downloadAndUpdateJar(sender);
+			}
+
+			@Override
+			public void upToDate() {
+				//// Plugin is up-to-date
+			}
+		});
 	}
 
 }
