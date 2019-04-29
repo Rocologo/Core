@@ -5,6 +5,8 @@ import java.io.File;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.inventivetalent.update.spiget.SpigetUpdate;
 import org.inventivetalent.update.spiget.UpdateCallback;
@@ -13,18 +15,18 @@ import org.inventivetalent.update.spiget.comparator.VersionComparator;
 import one.lindegaard.Core.Core;
 import one.lindegaard.Core.update.UpdateStatus;
 
-public class SpigetUpdater {
+public class SpigetUpdaterForced {
 
-	private Core plugin;
+	private static Plugin plugin;
 
-	public SpigetUpdater(Core plugin) {
-		this.plugin = plugin;
+	public SpigetUpdaterForced(Plugin plugin) {
+		SpigetUpdaterForced.plugin = plugin;
 	}
 
 	private static SpigetUpdate spigetUpdate = null;
-	private UpdateStatus updateAvailable = UpdateStatus.UNKNOWN;
-	private String currentJarFile = "";
-	private String newDownloadVersion = "";
+	private static UpdateStatus updateAvailable = UpdateStatus.UNKNOWN;
+	private static String currentJarFile = "";
+	private static String newDownloadVersion = "";
 
 	public SpigetUpdate getSpigetUpdate() {
 		return spigetUpdate;
@@ -78,7 +80,7 @@ public class SpigetUpdater {
 	 * @param sender
 	 * @return
 	 */
-	public boolean downloadAndUpdateJar(CommandSender sender) {
+	public static boolean downloadAndUpdateJar(CommandSender sender) {
 		final String OS = System.getProperty("os.name");
 		boolean succes = spigetUpdate.downloadUpdate();
 
@@ -90,9 +92,9 @@ public class SpigetUpdater {
 				if (count++ > 20) {
 					Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.RED
 							+ " No updates found. (No response from server after 20s)");
-					plugin.getMessages().senderSendMessage(sender, ChatColor.GREEN
-							+ plugin.getMessages().getString("bagofgoldcore.commands.update.could-not-update"));
-					plugin.getMessages().debug("Update error: %s", spigetUpdate.getFailReason().toString());
+					//plugin.getMessages().senderSendMessage(sender, ChatColor.GREEN
+					//		+ plugin.getMessages().getString("bagofgoldcore.commands.update.could-not-update"));
+					//plugin.getMessages().debug("Update error: %s", spigetUpdate.getFailReason().toString());
 					this.cancel();
 				} else {
 					// Wait for the response
@@ -103,8 +105,8 @@ public class SpigetUpdater {
 							if (newJar.exists())
 								newJar.delete();
 							downloadedJar.renameTo(newJar);
-							plugin.getMessages().senderSendMessage(sender, ChatColor.GREEN
-									+ plugin.getMessages().getString("bagofgoldcore.commands.update.complete"));
+							Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
+									+ "Download completed");
 						} else {
 							if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
 								File currentJar = new File("plugins/" + currentJarFile);
@@ -118,11 +120,12 @@ public class SpigetUpdater {
 									File downloadedJar = new File("plugins/update/" + currentJarFile);
 									File newJar = new File("plugins/BagOfGoldCore-" + newDownloadVersion + ".jar");
 									downloadedJar.renameTo(newJar);
-									plugin.getMessages().debug("Moved plugins/update/" + currentJarFile
+									Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
+											+ "Moved plugins/update/" + currentJarFile
 											+ " to plugins/BagOfGoldCore-" + newDownloadVersion + ".jar");
 									updateAvailable = UpdateStatus.RESTART_NEEDED;
-									plugin.getMessages().senderSendMessage(sender, ChatColor.GREEN
-											+ plugin.getMessages().getString("bagofgoldcore.commands.update.complete"));
+									Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
+											+ "<download completed");
 								}
 							}
 						}
@@ -139,13 +142,12 @@ public class SpigetUpdater {
 	 * 
 	 * @param sender
 	 * @param updateCheck
-	 * @param silent
-	 *            - if true the player will not get the status in Game
+	 * @param silent      - if true the player will not get the status in Game
 	 */
 	public void checkForUpdate(final CommandSender sender, final boolean silent) {
 		if (!silent)
 			Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.RESET
-					+ plugin.getMessages().getString("bagofgoldcore.commands.update.check"));
+					+ "Updated check");
 		if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
 			spigetUpdate = new SpigetUpdate(plugin, 66905);
 			spigetUpdate.setVersionComparator(VersionComparator.EQUAL);
@@ -157,78 +159,46 @@ public class SpigetUpdater {
 				public void updateAvailable(String newVersion, String downloadUrl, boolean hasDirectDownload) {
 					//// VersionComparator.EQUAL handles all updates as new, so I have to check the
 					//// version number manually
-					updateAvailable = isUpdateNewerVersion(newVersion);
-					if (updateAvailable == UpdateStatus.AVAILABLE) {
+					updateAvailable = UpdateStatus.FORCED_DOWNLOAD;
+					if (updateAvailable == UpdateStatus.FORCED_DOWNLOAD) {
 						newDownloadVersion = newVersion;
-						sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN + plugin.getMessages()
-								.getString("bagofgoldcore.commands.update.version-found", "newversion", newVersion));
-						if (plugin.getConfigManager().autoupdate) {
+						sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN + "Downloading version:"+ newVersion);
 							downloadAndUpdateJar(sender);
-							sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN
-									+ plugin.getMessages().getString("bagofgoldcore.commands.update.complete"));
-						} else
-							sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN
-									+ plugin.getMessages().getString("bagofgoldcore.commands.update.help"));
+							sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN+"Update completed");
 					}
 				}
 
 				@Override
 				public void upToDate() {
 					//// Plugin is up-to-date
-					if (!silent)
-						sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.RESET
-								+ plugin.getMessages().getString("bagofgoldcore.commands.update.no-update"));
 				}
 			});
 		}
 	}
 
-	/**
-	 * Check if "newVersion" is newer than plugin's current version
-	 * 
-	 * @param newVersion
-	 * @return
-	 */
-	public UpdateStatus isUpdateNewerVersion(String newVersion) {
-		// Version format on Spigot.org & Spiget.org: "n.n.n"
-		// Version format in jar file: "n.n.n" | "n.n.n-SNAPSHOT-Bn"
+	public static void ForceDownloadJar(Plugin plugin) {
+		ConsoleCommandSender sender = Bukkit.getConsoleSender();
+		spigetUpdate = new SpigetUpdate(plugin, 66905);
+		spigetUpdate.setVersionComparator(VersionComparator.EQUAL);
+		spigetUpdate.setUserAgent("BagOfGold");
 
-		int updateCheck = 0, pluginCheck = 0;
-		boolean snapshot = false;
-		String[] updateVer = newVersion.split("\\.");
+		spigetUpdate.checkForUpdate(new UpdateCallback() {
 
-		// Check the version #'s
-		String[] pluginVerSNAPSHOT = plugin.getDescription().getVersion().split("\\-");
-		if (pluginVerSNAPSHOT.length > 1)
-			snapshot = pluginVerSNAPSHOT[1].equals("SNAPSHOT");
-		if (snapshot)
-			plugin.getMessages().debug("You are using a development version (%s)",
-					plugin.getDescription().getVersion());
-		String[] pluginVer = pluginVerSNAPSHOT[0].split("\\.");
-		// Run through major, minor, sub - version numbers
-		for (int i = 0; i < Math.max(updateVer.length, pluginVer.length); i++) {
-			try {
-				updateCheck = 0;
-				if (i < updateVer.length)
-					updateCheck = Integer.valueOf(updateVer[i]);
-				pluginCheck = 0;
-				if (i < pluginVer.length)
-					pluginCheck = Integer.valueOf(pluginVer[i]);
-				if (updateCheck > pluginCheck) {
-					return UpdateStatus.AVAILABLE;
-				} else if (updateCheck < pluginCheck)
-					return UpdateStatus.NOT_AVAILABLE;
-			} catch (Exception e) {
-				plugin.getLogger().warning("Could not determine update's version # ");
-				plugin.getLogger().warning("Installed plugin version: " + plugin.getDescription().getVersion());
-				plugin.getLogger().warning("Newest version on Spiget.org: " + newVersion);
-				return UpdateStatus.UNKNOWN;
+			@Override
+			public void updateAvailable(String newVersion, String downloadUrl, boolean hasDirectDownload) {
+				//// VersionComparator.EQUAL handles all updates as new, so I have to check the
+				//// version number manually
+					newDownloadVersion = newVersion;
+					sender.sendMessage(
+							ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN + "Downloaded BagOfGoldCore - please restart your server.");
+					downloadAndUpdateJar(sender);
 			}
-		}
-		if ((updateCheck == pluginCheck && snapshot))
-			return UpdateStatus.AVAILABLE;
-		else
-			return UpdateStatus.NOT_AVAILABLE;
+
+			@Override
+			public void upToDate() {
+				//// Plugin is up-to-date
+			}
+		});
 	}
 
 }
