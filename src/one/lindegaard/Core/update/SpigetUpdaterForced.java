@@ -53,17 +53,21 @@ public class SpigetUpdaterForced {
 						Bukkit.getConsoleSender().sendMessage(
 								ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Download completed");
 						if (OS.indexOf("Win") >= 0) {
-							File downloadedJar = new File(
-									"plugins/update/BagOfGoldCore-" + newDownloadVersion + ".jar");
+							File downloadedJar = new File("plugins/update/" + currentJarFile);
+							File newJar = new File("plugins/update/BagOfGoldCore-" + newDownloadVersion + ".jar");
+							if (newJar.exists())
+								newJar.delete();
+							downloadedJar.renameTo(newJar);
+							
 							Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
 									+ "downloadedJar=" + downloadedJar.toString());
 							// Bukkit.getConsoleSender().sendMessage(
 							// ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Download completed");
 						} else {
 							if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
-								File downloadedJar = new File(
-										"plugins/update/BagOfGold-" + newDownloadVersion + ".jar");
+								File downloadedJar = new File("plugins/update/" + currentJarFile);
 								File newJar = new File("plugins/BagOfGoldCore-" + newDownloadVersion + ".jar");
+								downloadedJar.renameTo(newJar);
 								Bukkit.getConsoleSender().sendMessage(
 										ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "downloadedJar="
 												+ downloadedJar.toString() + " newJar=" + newJar.toString());
