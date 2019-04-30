@@ -72,8 +72,8 @@ public class SpigetUpdaterForced {
 
 						} else {
 							if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
-								File downloadedJar = new File("plugins//update//" + currentJarFile);
-								File newJar = new File("plugins//BagOfGoldCore-" + newDownloadVersion + ".jar");
+								File downloadedJar = new File(currentPath+"//update" + currentJarFile);
+								File newJar = new File(currentPath+"//BagOfGoldCore-" + newDownloadVersion + ".jar");
 								Bukkit.getConsoleSender()
 										.sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
 												+ "downloadedJar=" + downloadedJar.toString() + " newJar="
@@ -99,8 +99,13 @@ public class SpigetUpdaterForced {
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
 												"1144 path="+new File(currentPath+"//update").getPath());
 									
-									if (new File("plugins//update//"+currentJarFile).exists())
+									if (new File(currentPath+"//update/"+currentJarFile).exists()) 
+										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
+												"1166 path="+new File(currentPath+"//update"+currentJarFile).getPath());
+									
+									if (new File("plugins/update/"+currentJarFile).exists())
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "2222");
+									
 									if (new File("/plugins/update/"+currentJarFile).exists())
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "2233");
 									if (new File("./plugins/update/"+currentJarFile).exists())
