@@ -19,23 +19,15 @@ public class SpigetUpdaterForced {
 
 	private static UpdateStatus updateAvailable = UpdateStatus.UNKNOWN;
 	private static String currentJarFile = "";
-	private static String currentPath = "";
 	private static String newDownloadVersion = "";
 
 	public static void ForceDownloadJar(Plugin plugin) {
 		ConsoleCommandSender sender = Bukkit.getConsoleSender();
-		if (plugin != null)
-			sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN + "Plugin=" + plugin.getName());
-		else
-			sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN + "Plugin=null");
-
 		spigetUpdate = new SpigetUpdate(plugin, 66905);
 		spigetUpdate.setVersionComparator(VersionComparator.EQUAL);
 		spigetUpdate.setUserAgent("BagOfGoldCore");
 
-		sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN + "Check for updates");
 		spigetUpdate.checkForUpdate(new UpdateCallback() {
-
 			@Override
 			public void updateAvailable(String newVersion, String downloadUrl, boolean hasDirectDownload) {
 				//// VersionComparator.EQUAL handles all updates as new, so I have to check the
@@ -43,7 +35,7 @@ public class SpigetUpdaterForced {
 				updateAvailable = UpdateStatus.FORCED_DOWNLOAD;
 				newDownloadVersion = newVersion;
 				sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN
-						+ "Downloading version: BagOfGoldCore-" + newVersion + ".jar");
+						+ "Forced downloading of BagOfGoldCore-" + newVersion + ".jar");
 				final String OS = System.getProperty("os.name");
 				boolean succes = spigetUpdate.downloadUpdate();
 
@@ -65,8 +57,8 @@ public class SpigetUpdaterForced {
 								ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Download completed");
 						if (OS.indexOf("Win") >= 0) {
 							File newJar = new File("plugins/update/BagOfGoldCore-" + newDownloadVersion + ".jar");
-							Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
-									+ " downloadedJar=" + downloadedJar.toString() + " newJar=" + newJar.toString());
+							//Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
+							//		+ " downloadedJar=" + downloadedJar.toString() + " newJar=" + newJar.toString());
 							try {
 								Files.move(downloadedJar, newJar);
 							} catch (IOException e) {
@@ -79,9 +71,9 @@ public class SpigetUpdaterForced {
 							if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
 								// File downloadedJar = new File(currentPath+"//update//"+ currentJarFile);
 								File newJar = new File("plugins/BagOfGoldCore-" + newDownloadVersion + ".jar");
-								Bukkit.getConsoleSender().sendMessage(
-										ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "downloadedJar="
-												+ downloadedJar.toString() + " newJar=" + newJar.toString());
+								//Bukkit.getConsoleSender().sendMessage(
+								//		ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "downloadedJar="
+								//				+ downloadedJar.toString() + " newJar=" + newJar.toString());
 
 								try {
 									Files.move(downloadedJar, newJar);
@@ -190,22 +182,18 @@ public class SpigetUpdaterForced {
 					}
 				}
 
-				sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN + "Update completed");
+				sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN + "Download completed");
 			}
 
 			@Override
 			public void upToDate() {
-				sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN + "No updates found");
+				//sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN + "No updates found");
 			}
 		});
 	}
 
 	public static void setCurrentJarFile(String currentJarFile) {
 		SpigetUpdaterForced.currentJarFile = currentJarFile;
-	}
-
-	public static void setCurrentPath(String currentPath) {
-		SpigetUpdaterForced.currentPath = currentPath;
 	}
 
 }
