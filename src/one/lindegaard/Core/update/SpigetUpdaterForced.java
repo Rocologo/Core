@@ -47,6 +47,12 @@ public class SpigetUpdaterForced {
 				final String OS = System.getProperty("os.name");
 				boolean succes = spigetUpdate.downloadUpdate();
 
+				try {
+					Thread.sleep(5000L);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				int count = 0;
 
 				while (count++ < 20) {
