@@ -6,8 +6,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>Core</artifactId>
 	<packaging>jar</packaging>
-	<!-- <version>0.0.5</version> -->
-	<version>0.0.5-SNAPSHOT-B${build.number}</version>
+	<version>0.0.6</version>
+	<!-- <version>0.0.6-SNAPSHOT-B${build.number}</version> -->
 	<name>Core</name>
 	<url>https://www.spigotmc.org/resources/core/</url>
 	<description>Core is a shared library for MobHunting and BagOfGold.</description>
