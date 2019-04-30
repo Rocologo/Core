@@ -97,4 +97,8 @@ public class SpigetUpdaterForced {
 		});
 	}
 
+	public static void setCurrentJarFile(String currentJarFile) {
+		SpigetUpdaterForced.currentJarFile = currentJarFile;
+	}
+
 }
