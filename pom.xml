@@ -4,13 +4,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>Core</artifactId>
+	<artifactId>BagOfGoldCore</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.6</version>
 	<!-- <version>0.0.6-SNAPSHOT-B${build.number}</version> -->
-	<name>Core</name>
-	<url>https://www.spigotmc.org/resources/core/</url>
-	<description>Core is a shared library for MobHunting and BagOfGold.</description>
+	<name>BagOfGoldCore</name>
+	<url>https://www.spigotmc.org/resources/bagofgold-core-library.66905/</url>
+	<description>BagOfGoldCore is a shared library for MobHunting and BagOfGold.</description>
 
 	<scm>
 		<connection>scm:svn:https://github.com/Rocologo/Core.git</connection>
