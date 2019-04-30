@@ -58,8 +58,6 @@ public class SpigetUpdaterForced {
 						if (OS.indexOf("Win") >= 0) {
 							File downloadedJar = new File("plugins/update/" + currentJarFile);
 							File newJar = new File("plugins/update/BagOfGoldCore-" + newDownloadVersion + ".jar");
-							if (newJar.exists())
-								newJar.delete();
 							Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
 									+ " downloadedJar=" + downloadedJar.toString() + " newJar=" + newJar.toString());
 
@@ -75,18 +73,20 @@ public class SpigetUpdaterForced {
 							if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
 								File downloadedJar = new File("plugins/update/" + currentJarFile);
 								File newJar = new File("plugins/BagOfGoldCore-" + newDownloadVersion + ".jar");
-								// downloadedJar.renameTo(newJar);
 								Bukkit.getConsoleSender()
 										.sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
 												+ "downloadedJar=" + downloadedJar.toString() + " newJar="
 												+ newJar.toString() + " path=" + plugin.getDataFolder());
-								// downloadedJar.renameTo(newJar);
-								try {
+								/**try {
 									Files.move(downloadedJar, newJar);
 								} catch (IOException e) {
 									e.printStackTrace();
-								}
-
+								}**/
+								if (downloadedJar.exists())
+									downloadedJar.renameTo(newJar);
+								else 
+									Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Could not find dondloadedjar="+downloadedJar.toString()+", currentJar="+currentJarFile);
+							
 								Bukkit.getConsoleSender()
 										.sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Moved "
 												+ downloadedJar.toString() + " to " + newJar.toString());
