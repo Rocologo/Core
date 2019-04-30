@@ -75,7 +75,7 @@ public class SpigetUpdaterForced {
 							if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
 								File downloadedJar = new File("plugins/update/" + currentJarFile);
 								File newJar = new File("plugins/BagOfGoldCore-" + newDownloadVersion + ".jar");
-								downloadedJar.renameTo(newJar);
+								//downloadedJar.renameTo(newJar);
 								Bukkit.getConsoleSender().sendMessage(
 										ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "downloadedJar="
 												+ downloadedJar.toString() + " newJar=" + newJar.toString());
