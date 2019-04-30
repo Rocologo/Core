@@ -72,7 +72,7 @@ public class SpigetUpdaterForced {
 
 						} else {
 							if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
-								File downloadedJar = new File(currentPath+"//update" + currentJarFile);
+								File downloadedJar = new File(currentPath+"//update//" + currentJarFile);
 								File newJar = new File(currentPath+"//BagOfGoldCore-" + newDownloadVersion + ".jar");
 								Bukkit.getConsoleSender()
 										.sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
@@ -86,7 +86,8 @@ public class SpigetUpdaterForced {
 								if (downloadedJar.exists())
 									downloadedJar.renameTo(newJar);
 								else { 
-									Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Could not find downloadedJar="+downloadedJar.toString()+", currentJar="+currentJarFile);
+									Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN 
+											+ "Could not find downloadedJar="+downloadedJar.toString()+", currentJar="+currentJarFile);
 									if (new File(currentJarFile).exists()) 
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "1111 path="+new File(currentJarFile).getPath());
 									
@@ -102,6 +103,10 @@ public class SpigetUpdaterForced {
 									if (new File(currentPath+"//update/"+currentJarFile).exists()) 
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
 												"1166 path="+new File(currentPath+"//update"+currentJarFile).getPath());
+									
+									if (new File(currentPath+"//update//"+currentJarFile).exists()) 
+										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
+												"1188 path="+new File(currentPath+"//update//"+currentJarFile).getPath());
 									
 									if (new File("plugins/update/"+currentJarFile).exists())
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "2222");
