@@ -72,7 +72,7 @@ public class SpigetUpdaterForced {
 
 						} else {
 							if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
-								File downloadedJar = new File(currentPath+"//update//" + currentJarFile);
+								File downloadedJar = new File(String.join(currentPath,"//update//", currentJarFile));
 								File newJar = new File(currentPath+"//BagOfGoldCore-" + newDownloadVersion + ".jar");
 								Bukkit.getConsoleSender()
 										.sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
@@ -96,13 +96,14 @@ public class SpigetUpdaterForced {
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
 												"1122 path="+new File(currentPath).getPath() + " path="+currentPath);
 									
+									//OK
 									if (new File(currentPath+"//update").exists()) 
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
 												"1144 path="+new File(currentPath+"//update").getPath());
 									
 									if (new File(currentPath+"//update/"+currentJarFile).exists()) 
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
-												"1166 path="+new File(currentPath+"//update"+currentJarFile).getPath());
+												"1166 path="+new File(currentPath+"//update/"+currentJarFile).getPath());
 									
 									if (new File(currentPath+"//update//"+currentJarFile).exists()) 
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
