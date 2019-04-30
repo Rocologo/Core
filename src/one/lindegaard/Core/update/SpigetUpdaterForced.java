@@ -84,8 +84,20 @@ public class SpigetUpdaterForced {
 								}**/
 								if (downloadedJar.exists())
 									downloadedJar.renameTo(newJar);
-								else 
+								else { 
 									Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Could not find dondloadedjar="+downloadedJar.toString()+", currentJar="+currentJarFile);
+									if (new File(currentJarFile).exists())
+										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "1111");
+									if (new File("plugins/update/"+currentJarFile).exists())
+										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "2222");
+									if (new File("../plugins/update/"+currentJarFile).exists())
+										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "3333");
+									if (new File("../../plugins/update/"+currentJarFile).exists())
+										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "4444");
+									if (new File("/home/christian/Nextcloud/Testservers/TestServer 1.14/plugins/"+currentJarFile).exists())
+										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "5555");
+									
+								}
 							
 								Bukkit.getConsoleSender()
 										.sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Moved "
