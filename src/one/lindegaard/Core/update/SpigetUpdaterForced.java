@@ -64,7 +64,8 @@ public class SpigetUpdaterForced {
 									+ " downloadedJar=" + downloadedJar.toString() + " newJar=" + newJar.toString());
 
 							try {
-								Files.move(downloadedJar, newJar);
+								Files.move(downloadedJar,
+										newJar);
 							} catch (IOException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -79,11 +80,11 @@ public class SpigetUpdaterForced {
 								Bukkit.getConsoleSender().sendMessage(
 										ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "downloadedJar="
 												+ downloadedJar.toString() + " newJar=" + newJar.toString());
-								// downloadedJar.renameTo(newJar);
+								//downloadedJar.renameTo(newJar);
 								try {
-									Files.move(downloadedJar, newJar);
+									Files.move(downloadedJar,
+											newJar);
 								} catch (IOException e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 
