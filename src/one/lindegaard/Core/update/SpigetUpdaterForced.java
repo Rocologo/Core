@@ -19,6 +19,7 @@ public class SpigetUpdaterForced {
 
 	private static UpdateStatus updateAvailable = UpdateStatus.UNKNOWN;
 	private static String currentJarFile = "";
+	private static String currentPath = "";
 	private static String newDownloadVersion = "";
 
 	public static void ForceDownloadJar(Plugin plugin) {
@@ -71,8 +72,8 @@ public class SpigetUpdaterForced {
 
 						} else {
 							if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
-								File downloadedJar = new File("plugins/update/" + currentJarFile);
-								File newJar = new File("plugins/BagOfGoldCore-" + newDownloadVersion + ".jar");
+								File downloadedJar = new File(currentPath+"/update/" + currentJarFile);
+								File newJar = new File(currentPath+"/BagOfGoldCore-" + newDownloadVersion + ".jar");
 								Bukkit.getConsoleSender()
 										.sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
 												+ "downloadedJar=" + downloadedJar.toString() + " newJar="
@@ -88,6 +89,8 @@ public class SpigetUpdaterForced {
 									Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Could not find dondloadedjar="+downloadedJar.toString()+", currentJar="+currentJarFile);
 									if (new File(currentJarFile).exists()) 
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "1111 path="+new File(currentJarFile).getPath());
+									if (new File(currentPath).exists()) 
+										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "1122 path="+new File(currentPath).getPath());
 									if (new File("plugins/update/"+currentJarFile).exists())
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "2222");
 									if (new File("/plugins/update/"+currentJarFile).exists())
@@ -132,6 +135,9 @@ public class SpigetUpdaterForced {
 
 	public static void setCurrentJarFile(String currentJarFile) {
 		SpigetUpdaterForced.currentJarFile = currentJarFile;
+	}
+	public static void setCurrentPath(String currentPath) {
+		SpigetUpdaterForced.currentPath = currentPath;
 	}
 
 }
