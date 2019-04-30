@@ -86,8 +86,8 @@ public class SpigetUpdaterForced {
 									downloadedJar.renameTo(newJar);
 								else { 
 									Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Could not find dondloadedjar="+downloadedJar.toString()+", currentJar="+currentJarFile);
-									if (new File(currentJarFile).exists())
-										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "1111");
+									if (new File(currentJarFile).exists()) 
+										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "1111 path="+new File(currentJarFile).getPath());
 									if (new File("plugins/update/"+currentJarFile).exists())
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "2222");
 									if (new File("/plugins/update/"+currentJarFile).exists())
