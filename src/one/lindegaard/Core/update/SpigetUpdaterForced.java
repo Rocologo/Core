@@ -77,7 +77,7 @@ public class SpigetUpdaterForced {
 								Bukkit.getConsoleSender()
 										.sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
 												+ "downloadedJar=" + downloadedJar.toString() + " newJar="
-												+ newJar.toString() + " path=" + plugin.getDataFolder());
+												+ newJar.toString());
 								/**try {
 									Files.move(downloadedJar, newJar);
 								} catch (IOException e) {
@@ -100,23 +100,29 @@ public class SpigetUpdaterForced {
 									if (new File(currentPath+"//update").exists()) 
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
 												"1144 path="+new File(currentPath+"//update").getPath());
-									
+									//OK
 									if (new File(currentPath+"//update//").exists()) 
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
 												"1155 path="+new File(currentPath+"//update//").getPath());
 									
 									if (new File(currentPath+"//update/"+currentJarFile).exists()) 
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
-												"1166 path="+new File(currentPath+"//update/"+currentJarFile).getPath());
+												"1166 path="+new File(currentPath+"//update/"+currentJarFile).toString());
+									else
+										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
+												"ERROR1166 path="+new File(currentPath+"//update/"+currentJarFile).toString());
 									
 									if (new File(currentPath+"//update//"+currentJarFile).exists()) 
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
 												"1188 path="+new File(currentPath+"//update//"+currentJarFile).getPath());
+									else
+										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + 
+												"ERROR1188 path="+new File(currentPath+"//update//"+currentJarFile).toString());
 									
-									if (new File("plugins/update/"+currentJarFile).exists())
+									if (new File("plugins//update//"+currentJarFile).exists())
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "2222");
 									
-									if (new File("/plugins/update/"+currentJarFile).exists())
+									if (new File("plugins/update/"+currentJarFile).exists())
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "2233");
 									if (new File("./plugins/update/"+currentJarFile).exists())
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "2255");
@@ -127,7 +133,7 @@ public class SpigetUpdaterForced {
 									
 									//OK
 									if (new File("/home/christian/Nextcloud/Testservers/TestServer 1.14/plugins/"+currentJarFile).exists())
-										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "5555");
+										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "5555" + " file=/home/christian/Nextcloud/Testservers/TestServer 1.14/plugins/"+currentJarFile);
 									
 									if (new File(currentPath+"/update/"+currentJarFile).exists())
 										Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "6666");
