@@ -1,6 +1,7 @@
 package one.lindegaard.Core.update;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -9,6 +10,8 @@ import org.bukkit.plugin.Plugin;
 import org.inventivetalent.update.spiget.SpigetUpdate;
 import org.inventivetalent.update.spiget.UpdateCallback;
 import org.inventivetalent.update.spiget.comparator.VersionComparator;
+
+import com.google.common.io.Files;
 
 public class SpigetUpdaterForced {
 
@@ -38,8 +41,8 @@ public class SpigetUpdaterForced {
 				//// version number manually
 				updateAvailable = UpdateStatus.FORCED_DOWNLOAD;
 				newDownloadVersion = newVersion;
-				sender.sendMessage(
-						ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN + "Downloading version:" + newVersion);
+				sender.sendMessage(ChatColor.GOLD + "[BagOfGoldCore] " + ChatColor.GREEN
+						+ "Downloading version: BagOfGoldCore-" + newVersion + ".jar");
 				final String OS = System.getProperty("os.name");
 				boolean succes = spigetUpdate.downloadUpdate();
 
@@ -57,12 +60,17 @@ public class SpigetUpdaterForced {
 							File newJar = new File("plugins/update/BagOfGoldCore-" + newDownloadVersion + ".jar");
 							if (newJar.exists())
 								newJar.delete();
-							downloadedJar.renameTo(newJar);
-							
 							Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN
-									+ "downloadedJar=" + downloadedJar.toString());
-							// Bukkit.getConsoleSender().sendMessage(
-							// ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Download completed");
+									+ " downloadedJar=" + downloadedJar.toString() + " newJar=" + newJar.toString());
+
+							try {
+								Files.move(downloadedJar, newJar);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							// downloadedJar.renameTo(newJar);
+
 						} else {
 							if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
 								File downloadedJar = new File("plugins/update/" + currentJarFile);
@@ -72,6 +80,13 @@ public class SpigetUpdaterForced {
 										ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "downloadedJar="
 												+ downloadedJar.toString() + " newJar=" + newJar.toString());
 								// downloadedJar.renameTo(newJar);
+								try {
+									Files.move(downloadedJar, newJar);
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+
 								Bukkit.getConsoleSender()
 										.sendMessage(ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Moved "
 												+ downloadedJar.toString() + " to " + newJar.toString());
