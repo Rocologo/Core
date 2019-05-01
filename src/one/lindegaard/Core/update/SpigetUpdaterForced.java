@@ -3,7 +3,10 @@ package one.lindegaard.Core.update;
 import java.io.File;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.plugin.InvalidDescriptionException;
+import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.UnknownDependencyException;
 import org.inventivetalent.update.spiget.SpigetUpdate;
 import org.inventivetalent.update.spiget.UpdateCallback;
 import org.inventivetalent.update.spiget.comparator.VersionComparator;
@@ -49,7 +52,19 @@ public class SpigetUpdaterForced {
 							File newJar = new File("plugins/BagOfGoldCore-" + newDownloadVersion + ".jar");
 							downloadedJar.renameTo(newJar);
 							Bukkit.getConsoleSender().sendMessage(
-									ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Download completed");
+									ChatColor.GOLD + "[BagOfGoldCore]" + ChatColor.GREEN + "Download completed. Please restart your server to make the plugin active.");
+							try {
+								Bukkit.getPluginManager().loadPlugin(newJar);
+							} catch (UnknownDependencyException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (InvalidPluginException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (InvalidDescriptionException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 						break;
 					} else {

@@ -6,8 +6,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>BagOfGoldCore</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.6</version>
-	<!-- <version>0.0.6-SNAPSHOT-B${build.number}</version> -->
+	<!-- <version>0.0.7</version> -->
+	<version>0.0.7-SNAPSHOT-B${build.number}</version>
 	<name>BagOfGoldCore</name>
 	<url>https://www.spigotmc.org/resources/bagofgold-core-library.66905/</url>
 	<description>BagOfGoldCore is a shared library for MobHunting and BagOfGold.</description>
