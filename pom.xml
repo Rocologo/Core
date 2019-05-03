@@ -13,9 +13,9 @@
 	<description>BagOfGoldCore is a shared library for MobHunting and BagOfGold.</description>
 
 	<scm>
-		<connection>scm:svn:https://github.com/Rocologo/Core.git</connection>
-		<developerConnection>scm:git:git://github.com/Rocologo/Core.git</developerConnection>
-		<url>https://github.com/Rocologo/Core</url>
+		<connection>scm:svn:https://github.com/Rocologo/BagOfGoldCore.git</connection>
+		<developerConnection>scm:git:git://github.com/Rocologo</developerConnection>
+		<url>https://github.com/Rocologo/BagOfGoldCore</url>
 	</scm>
 
 	<issueManagement>

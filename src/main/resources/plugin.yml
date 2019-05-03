@@ -1,8 +1,8 @@
 name: BagOfGoldCore
-main: one.lindegaard.Core.Core
+main: one.lindegaard.BagOfGoldCore.BagOfGoldCore
 version: ${version}
 description: BagOfGoldCore is a shared Library for BagOfGold and MobHunting. 
-dev-url: https://github.com/Rocologo/Core
+dev-url: https://github.com/Rocologo/BagOfGoldCore
 author: Rocologo
 depend: []
 loadbefore: [BagOfGold, MobHunting]
