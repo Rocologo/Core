@@ -54,7 +54,9 @@ public class SpigetUpdaterForced {
 							Bukkit.getConsoleSender().sendMessage(
 									ChatColor.GOLD + "["+plugin.getName()+"][BagOfGoldCore]" + ChatColor.GREEN + "Download completed. Please restart your server to make the plugin active.");
 							try {
-								Bukkit.getPluginManager().loadPlugin(newJar);
+								Plugin p = Bukkit.getPluginManager().loadPlugin(newJar);
+								p.onLoad();
+								p.onEnable();
 							} catch (UnknownDependencyException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
