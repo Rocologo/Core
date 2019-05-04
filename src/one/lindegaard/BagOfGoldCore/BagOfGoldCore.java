@@ -43,7 +43,7 @@ public class BagOfGoldCore extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
-
+		
 		mConfig = new ConfigManager(this, mFile);
 
 		if (mConfig.loadConfig()) {

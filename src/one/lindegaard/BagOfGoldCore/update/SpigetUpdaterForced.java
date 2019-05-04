@@ -53,6 +53,7 @@ public class SpigetUpdaterForced {
 							downloadedJar.renameTo(newJar);
 							Bukkit.getConsoleSender().sendMessage(
 									ChatColor.GOLD + "["+plugin.getName()+"][BagOfGoldCore]" + ChatColor.GREEN + "Download completed. Please restart your server to make the plugin active.");
+							/**
 							try {
 								Plugin p = Bukkit.getPluginManager().loadPlugin(newJar);
 								p.onLoad();
@@ -67,6 +68,7 @@ public class SpigetUpdaterForced {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+							**/
 						}
 						break;
 					} else {
