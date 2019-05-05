@@ -35,21 +35,6 @@
 	<build>
 		<sourceDirectory>${basedir}/src</sourceDirectory>
 		<defaultGoal>clean install</defaultGoal>
-		<resources>
-			<resource>
-				<targetPath>.</targetPath>
-				<filtering>true</filtering>
-				<directory>${basedir}/src/main/resources</directory>
-				<includes>
-					<include>plugin.yml</include>
-				</includes>
-			</resource>
-			<resource>
-				<targetPath>lang</targetPath>
-				<filtering>true</filtering>
-				<directory>${basedir}/src/main/resources/lang</directory>
-			</resource>
-		</resources>
 		<directory>${basedir}/target</directory>
 		<plugins>
 			<plugin>
