@@ -67,7 +67,7 @@ public class SpigetUpdater {
 				public void run() {
 					checkForUpdate(sender, false);
 				}
-			}.runTaskTimer(BagOfGoldCore.getInstance(), 0L, seconds * 20L);
+			}.runTaskTimer(BagOfGoldCore.getInstance(), 50000L, seconds * 20L);
 		}
 	}
 

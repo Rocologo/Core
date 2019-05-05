@@ -3,10 +3,7 @@ package one.lindegaard.BagOfGoldCore.update;
 import java.io.File;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.plugin.InvalidDescriptionException;
-import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.UnknownDependencyException;
 import org.inventivetalent.update.spiget.SpigetUpdate;
 import org.inventivetalent.update.spiget.UpdateCallback;
 import org.inventivetalent.update.spiget.comparator.VersionComparator;
@@ -21,7 +18,7 @@ public class SpigetUpdaterForced {
 		spigetUpdate = new SpigetUpdate(plugin, 66905);
 		spigetUpdate.setVersionComparator(VersionComparator.EQUAL);
 		spigetUpdate.setUserAgent("BagOfGoldCore");
-
+		
 		spigetUpdate.checkForUpdate(new UpdateCallback() {
 			@Override
 			public void updateAvailable(String newVersion, String downloadUrl, boolean hasDirectDownload) {
@@ -46,7 +43,7 @@ public class SpigetUpdaterForced {
 					File downloadedJar = new File("plugins/update/" + currentJarFile);
 					if (succes && downloadedJar.exists()) {
 						if (OS.indexOf("Win") >= 0) {
-							File newJar = new File("plugins/update/BagOfGoldCore-" + newDownloadVersion + ".jar");
+							File newJar = new File("plugins/BagOfGoldCore-" + newDownloadVersion + ".jar");
 							downloadedJar.renameTo(newJar);
 						} else {
 							File newJar = new File("plugins/BagOfGoldCore-" + newDownloadVersion + ".jar");
@@ -55,9 +52,9 @@ public class SpigetUpdaterForced {
 									ChatColor.GOLD + "["+plugin.getName()+"][BagOfGoldCore]" + ChatColor.GREEN + "Download completed. Please restart your server to make the plugin active.");
 							/**
 							try {
-								Plugin p = Bukkit.getPluginManager().loadPlugin(newJar);
-								p.onLoad();
-								p.onEnable();
+								//Plugin p = Bukkit.getPluginManager().loadPlugin(newJar);
+								//p.onLoad();
+								//p.onEnable();
 							} catch (UnknownDependencyException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
