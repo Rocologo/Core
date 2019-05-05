@@ -6,8 +6,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>Core</artifactId>
 	<packaging>jar</packaging>
-	<!-- <version>0.0.1</version> -->
-	<version>0.0.1-SNAPSHOT-B${build.number}</version>
+	<!-- <version>0.1.0</version> -->
+	<version>0.1.0-SNAPSHOT-B${build.number}</version>
 	<name>Core</name>
 	<url>https://github.com/Rocologo/Core</url>
 	<description>Core is a library with code shared between MobHunting and BagOfGold.</description>
