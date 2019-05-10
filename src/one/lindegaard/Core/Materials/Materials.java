@@ -33,7 +33,7 @@ public class Materials {
 	public static boolean isUnarmed(ItemStack item) {
 		return (item == null || item.getType() == Material.AIR);
 	}
-	
+
 	public static boolean isTrident(ItemStack item) {
 		return item != null && (item.getType() == Material.TRIDENT);
 	}
@@ -47,12 +47,15 @@ public class Materials {
 					|| block.getType() == Material.LEGACY_SIGN || block.getType() == Material.LEGACY_SIGN_POST
 					|| block.getType() == Material.LEGACY_WALL_SIGN || block.getType() == Material.OAK_SIGN
 					|| block.getType() == Material.OAK_WALL_SIGN || block.getType() == Material.SPRUCE_SIGN
-					|| block.getType() == Material.SPRUCE_WALL_SIGN;
+					|| block.getType() == Material.SPRUCE_WALL_SIGN
+					|| block.getType() == Material.matchMaterial("WALL_SIGN");
 		else if (Servers.isMC113OrNewer())
 			return block.getType() == Material.LEGACY_SIGN || block.getType() == Material.LEGACY_SIGN_POST
-					|| block.getType() == Material.LEGACY_SIGN_POST;
+					|| block.getType() == Material.LEGACY_WALL_SIGN
+					|| block.getType() == Material.matchMaterial("WALL_SIGN");
 		else
-			return block.getType() == Material.LEGACY_SIGN || block.getType() == Material.LEGACY_SIGN_POST;
+			return block.getType() == Material.LEGACY_SIGN || block.getType() == Material.LEGACY_SIGN_POST
+					|| block.getType() == Material.matchMaterial("WALL_SIGN");
 	}
 
 	public static boolean isWallSign(Block block) {
@@ -91,8 +94,8 @@ public class Materials {
 					|| material == Material.WITHER_SKELETON_SKULL || material == Material.WITHER_SKELETON_WALL_SKULL
 					|| material == Material.CREEPER_HEAD || material == Material.CREEPER_WALL_HEAD
 					|| material == Material.DRAGON_HEAD || material == Material.DRAGON_WALL_HEAD;
-		else 
-			return material==Material.LEGACY_SKULL || material == Material.LEGACY_SKULL_ITEM;
+		else
+			return material == Material.LEGACY_SKULL || material == Material.LEGACY_SKULL_ITEM;
 	}
 
 }
