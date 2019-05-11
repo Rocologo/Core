@@ -47,15 +47,16 @@ public class Materials {
 					|| block.getType() == Material.LEGACY_SIGN || block.getType() == Material.LEGACY_SIGN_POST
 					|| block.getType() == Material.LEGACY_WALL_SIGN || block.getType() == Material.OAK_SIGN
 					|| block.getType() == Material.OAK_WALL_SIGN || block.getType() == Material.SPRUCE_SIGN
-					|| block.getType() == Material.SPRUCE_WALL_SIGN
-					|| block.getType() == Material.matchMaterial("WALL_SIGN");
+					|| block.getType() == Material.SPRUCE_WALL_SIGN;
 		else if (Servers.isMC113OrNewer())
-			return block.getType() == Material.LEGACY_SIGN || block.getType() == Material.LEGACY_SIGN_POST
-					|| block.getType() == Material.LEGACY_WALL_SIGN
-					|| block.getType() == Material.matchMaterial("WALL_SIGN");
+			return block.getType() == Material.matchMaterial("WALL_SIGN")
+					|| block.getType() == Material.matchMaterial("SIGN_POST")
+					|| block.getType() == Material.matchMaterial("SIGN") || block.getType() == Material.LEGACY_SIGN
+					|| block.getType() == Material.LEGACY_SIGN_POST || block.getType() == Material.LEGACY_WALL_SIGN;
 		else
-			return block.getType() == Material.LEGACY_SIGN || block.getType() == Material.LEGACY_SIGN_POST
-					|| block.getType() == Material.matchMaterial("WALL_SIGN");
+			return block.getType() == Material.matchMaterial("WALL_SIGN")
+					|| block.getType() == Material.matchMaterial("SIGN_POST")
+					|| block.getType() == Material.matchMaterial("SIGN");
 	}
 
 	public static boolean isWallSign(Block block) {
@@ -65,9 +66,9 @@ public class Materials {
 					|| block.getType() == Material.LEGACY_WALL_SIGN || block.getType() == Material.OAK_WALL_SIGN
 					|| block.getType() == Material.SPRUCE_WALL_SIGN;
 		else if (Servers.isMC113OrNewer())
-			return block.getType() == Material.LEGACY_SIGN;
+			return block.getType() == Material.LEGACY_WALL_SIGN;
 		else
-			return block.getType() == Material.LEGACY_SIGN;
+			return block.getType() == Material.matchMaterial("WALL_SIGN");
 	}
 
 	public static boolean isSign(Material material) {
@@ -81,10 +82,12 @@ public class Materials {
 					|| material == Material.OAK_WALL_SIGN || material == Material.SPRUCE_SIGN
 					|| material == Material.SPRUCE_WALL_SIGN;
 		else if (Servers.isMC113OrNewer())
-			return material == Material.LEGACY_SIGN || material == Material.LEGACY_SIGN_POST
-					|| material == Material.LEGACY_WALL_SIGN;
+			return material == Material.matchMaterial("WALL_SIGN") || material == Material.matchMaterial("SIGN_POST")
+					|| material == Material.matchMaterial("SIGN") || material == Material.LEGACY_SIGN
+					|| material == Material.LEGACY_SIGN_POST || material == Material.LEGACY_WALL_SIGN;
 		else
-			return material == Material.LEGACY_SIGN || material == Material.LEGACY_SIGN_POST;
+			return material == Material.matchMaterial("WALL_SIGN") || material == Material.matchMaterial("SIGN_POST")
+					|| material == Material.matchMaterial("SIGN");
 	}
 
 	public static boolean isSkull(Material material) {
@@ -95,7 +98,8 @@ public class Materials {
 					|| material == Material.CREEPER_HEAD || material == Material.CREEPER_WALL_HEAD
 					|| material == Material.DRAGON_HEAD || material == Material.DRAGON_WALL_HEAD;
 		else
-			return material == Material.LEGACY_SKULL || material == Material.LEGACY_SKULL_ITEM;
+			return material == Material.matchMaterial("SKULL_ITEM") || material == Material.matchMaterial("SKULL")
+					|| material == Material.LEGACY_SKULL || material == Material.LEGACY_SKULL_ITEM;
 	}
 
 }
