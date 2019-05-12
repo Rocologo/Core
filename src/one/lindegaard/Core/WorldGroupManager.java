@@ -149,7 +149,7 @@ public class WorldGroupManager {
 		return startBalance.get(worldgroup);
 	}
 
-	public Set<String> getAllWorldroups() {
+	public Set<String> getAllWorldGroups() {
 		return worldGroups.keySet();
 	}
 
