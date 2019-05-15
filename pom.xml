@@ -10,7 +10,7 @@
 	<version>0.1.0-SNAPSHOT-B${build.number}</version>
 	<name>Core</name>
 	<url>https://github.com/Rocologo/Core</url>
-	<description>Core is a library with code shared between MobHunting and BagOfGold.</description>
+	<description>Core is a library with code shared between MobHunting and BagOfGold. </description>
 
 	<scm>
 		<connection>scm:svn:https://github.com/Rocologo/Core.git</connection>
