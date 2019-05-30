@@ -206,7 +206,6 @@ public class WorldGroupManager {
 				}
 			}
 		} else {
-			// plugin.getMessages().debug("Loading WorldGroups from BagOfGoldCore.");
 			try {
 				config.load(file);
 			} catch (IllegalStateException | InvalidConfigurationException | IOException e) {
@@ -215,15 +214,17 @@ public class WorldGroupManager {
 
 		}
 
-		ConfigurationSection section = config.getConfigurationSection("groups");
-		for (String wg : section.getKeys(false)) {
-			@SuppressWarnings("unchecked")
-			List<String> worlds = (List<String>) section.get(wg + ".worlds");
-			worldGroups.put(wg, worlds);
-			GameMode gamemode = GameMode.valueOf((String) section.get(wg + ".default-gamemode"));
-			defaultGameMode.put(wg, gamemode);
-			double startingBalance = section.getDouble(wg + ".starting-balance");
-			startBalance.put(wg, startingBalance);
+		if (config.contains("groups")) {
+			ConfigurationSection section = config.getConfigurationSection("groups");
+			for (String wg : section.getKeys(false)) {
+				@SuppressWarnings("unchecked")
+				List<String> worlds = (List<String>) section.get(wg + ".worlds");
+				worldGroups.put(wg, worlds);
+				GameMode gamemode = GameMode.valueOf((String) section.get(wg + ".default-gamemode"));
+				defaultGameMode.put(wg, gamemode);
+				double startingBalance = section.getDouble(wg + ".starting-balance");
+				startBalance.put(wg, startingBalance);
+			}
 		}
 	}
 

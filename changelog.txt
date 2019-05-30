@@ -1,3 +1,5 @@
+V0.1.0
+* Fixed bug when worldgroups.yml is created first time 
 V0.0.6
 * Forced download added
 V0.0.5
