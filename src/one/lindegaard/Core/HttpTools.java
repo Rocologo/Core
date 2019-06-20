@@ -6,7 +6,6 @@ import java.net.URL;
 import java.net.UnknownHostException;
 
 import org.bukkit.Bukkit;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class HttpTools {
 
@@ -18,11 +17,11 @@ public class HttpTools {
 
 	public static void isHomePageReachable(URL url, httpCallback callback) {
 		Bukkit.getConsoleSender().sendMessage("[CORE] isHomePageReachable");
-		new BukkitRunnable() {
-
+		
+		new Runnable() {
+			
 			@Override
 			public void run() {
-
 				try {
 					// open a connection to that source
 					HttpURLConnection urlConnect = (HttpURLConnection) url.openConnection();
