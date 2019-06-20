@@ -5,6 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.UnknownHostException;
 
+import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class HttpTools {
@@ -16,6 +17,7 @@ public class HttpTools {
 	}
 
 	public static void isHomePageReachable(URL url, httpCallback callback) {
+		Bukkit.getConsoleSender().sendMessage("[CORE] isHomePageReachable");
 		new BukkitRunnable() {
 
 			@Override
@@ -41,6 +43,7 @@ public class HttpTools {
 								|| status == HttpURLConnection.HTTP_SEE_OTHER)
 							redirect = true;
 					}
+					Bukkit.getConsoleSender().sendMessage("[CORE] status="+status);
 
 					if (redirect) {
 
@@ -51,8 +54,9 @@ public class HttpTools {
 						urlConnect = (HttpURLConnection) new URL(newUrl).openConnection();
 
 						status = urlConnect.getResponseCode();
-
+						Bukkit.getConsoleSender().sendMessage("[CORE] status2="+status);
 					}
+					
 					if (status == HttpURLConnection.HTTP_OK)
 						callback.onSuccess();
 					else
