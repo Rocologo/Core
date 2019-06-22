@@ -45,7 +45,8 @@ public class Materials {
 					|| block.getType() == Material.DARK_OAK_SIGN || block.getType() == Material.DARK_OAK_WALL_SIGN
 					|| block.getType() == Material.JUNGLE_SIGN || block.getType() == Material.JUNGLE_WALL_SIGN
 					|| block.getType() == Material.LEGACY_SIGN || block.getType() == Material.LEGACY_SIGN_POST
-					|| block.getType() == Material.LEGACY_WALL_SIGN || block.getType() == Material.OAK_SIGN
+					|| block.getType() == Material.LEGACY_WALL_SIGN 
+					|| block.getType() == Material.OAK_SIGN
 					|| block.getType() == Material.OAK_WALL_SIGN || block.getType() == Material.SPRUCE_SIGN
 					|| block.getType() == Material.SPRUCE_WALL_SIGN;
 		else if (Servers.isMC113OrNewer())
@@ -99,7 +100,7 @@ public class Materials {
 					|| material == Material.DRAGON_HEAD || material == Material.DRAGON_WALL_HEAD;
 		else
 			return material == Material.matchMaterial("SKULL_ITEM") || material == Material.matchMaterial("SKULL")
-					|| material == Material.LEGACY_SKULL || material == Material.LEGACY_SKULL_ITEM;
+					|| material == Material.matchMaterial("SKULL") || material == Material.matchMaterial("SKULL_ITEM");
 	}
 
 }
