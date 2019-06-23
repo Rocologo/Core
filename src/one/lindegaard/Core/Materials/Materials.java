@@ -10,9 +10,9 @@ public class Materials {
 
 	public static boolean isAxe(ItemStack item) {
 		if (Servers.isMC113OrNewer())
-			return item != null && (item.getType() == Material.DIAMOND_AXE
-					|| item.getType() == Material.matchMaterial("GOLDEN_AXE") || item.getType() == Material.IRON_AXE
-					|| item.getType() == Material.STONE_AXE || item.getType() == Material.WOODEN_AXE);
+			return item != null && (item.getType() == Material.DIAMOND_AXE || item.getType() == Material.GOLDEN_AXE
+					|| item.getType() == Material.IRON_AXE || item.getType() == Material.STONE_AXE
+					|| item.getType() == Material.WOODEN_AXE);
 		else
 			return item != null && (item.getType() == Material.DIAMOND_AXE
 					|| item.getType() == Material.matchMaterial("GOLD_AXE") || item.getType() == Material.IRON_AXE
@@ -22,12 +22,12 @@ public class Materials {
 
 	public static boolean isSword(ItemStack item) {
 		if (Servers.isMC113OrNewer())
-			return item != null && (item.getType() == Material.DIAMOND_SWORD
-					|| item.getType() == Material.matchMaterial("GOLDEN_SWORD") || item.getType() == Material.IRON_SWORD
-					|| item.getType() == Material.STONE_SWORD || item.getType() == Material.WOODEN_SWORD);
+			return item != null && (item.getType() == Material.DIAMOND_SWORD || item.getType() == Material.GOLDEN_SWORD
+					|| item.getType() == Material.IRON_SWORD || item.getType() == Material.STONE_SWORD
+					|| item.getType() == Material.WOODEN_SWORD);
 		else
 			return item != null && (item.getType() == Material.DIAMOND_SWORD
-					|| item.getType() == Material.matchMaterial("GOLDEN_SWORD") || item.getType() == Material.IRON_SWORD
+					|| item.getType() == Material.matchMaterial("GOLD_SWORD") || item.getType() == Material.IRON_SWORD
 					|| item.getType() == Material.STONE_SWORD
 					|| item.getType() == Material.matchMaterial("WOOD_SWORD"));
 	}
@@ -35,12 +35,11 @@ public class Materials {
 	public static boolean isPick(ItemStack item) {
 		if (Servers.isMC113OrNewer())
 			return item != null && (item.getType() == Material.DIAMOND_PICKAXE
-					|| item.getType() == Material.matchMaterial("GOLDEN_PICKAXE")
-					|| item.getType() == Material.IRON_PICKAXE || item.getType() == Material.STONE_PICKAXE
-					|| item.getType() == Material.WOODEN_PICKAXE);
+					|| item.getType() == Material.GOLDEN_PICKAXE || item.getType() == Material.IRON_PICKAXE
+					|| item.getType() == Material.STONE_PICKAXE || item.getType() == Material.WOODEN_PICKAXE);
 		else
 			return item != null && (item.getType() == Material.DIAMOND_PICKAXE
-					|| item.getType() == Material.matchMaterial("GOLDEN_PICKAXE")
+					|| item.getType() == Material.matchMaterial("GOLD_PICKAXE")
 					|| item.getType() == Material.IRON_PICKAXE || item.getType() == Material.STONE_PICKAXE
 					|| item.getType() == Material.matchMaterial("WOOD_PICKAXE"));
 	}
@@ -54,7 +53,10 @@ public class Materials {
 	}
 
 	public static boolean isTrident(ItemStack item) {
-		return item != null && (item.getType() == Material.TRIDENT);
+		if (Servers.isMC113OrNewer())
+			return item != null && (item.getType() == Material.TRIDENT);
+		else
+			return false;
 	}
 
 	public static boolean isSign(Block block) {
