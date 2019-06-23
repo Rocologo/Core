@@ -122,5 +122,12 @@ public class Materials {
 		else
 			return material == Material.matchMaterial("SKULL_ITEM") || material == Material.matchMaterial("SKULL");
 	}
+	
+	public static boolean isPlayerHead(Material material) {
+		if (Servers.isMC113OrNewer())
+			return material == Material.PLAYER_HEAD || material == Material.PLAYER_WALL_HEAD;
+		else
+			return material == Material.matchMaterial("SKULL_ITEM") || material == Material.matchMaterial("SKULL");
+	}
 
 }
