@@ -9,21 +9,40 @@ import one.lindegaard.Core.Server.Servers;
 public class Materials {
 
 	public static boolean isAxe(ItemStack item) {
-		return item != null && (item.getType() == Material.DIAMOND_AXE || item.getType() == Material.GOLDEN_AXE
-				|| item.getType() == Material.IRON_AXE || item.getType() == Material.STONE_AXE
-				|| item.getType() == Material.WOODEN_AXE);
+		if (Servers.isMC113OrNewer())
+			return item != null && (item.getType() == Material.DIAMOND_AXE
+					|| item.getType() == Material.matchMaterial("GOLDEN_AXE") || item.getType() == Material.IRON_AXE
+					|| item.getType() == Material.STONE_AXE || item.getType() == Material.WOODEN_AXE);
+		else
+			return item != null && (item.getType() == Material.DIAMOND_AXE
+					|| item.getType() == Material.matchMaterial("GOLD_AXE") || item.getType() == Material.IRON_AXE
+					|| item.getType() == Material.STONE_AXE || item.getType() == Material.matchMaterial("WOOD_AXE"));
+
 	}
 
 	public static boolean isSword(ItemStack item) {
-		return item != null && (item.getType() == Material.DIAMOND_SWORD || item.getType() == Material.GOLDEN_SWORD
-				|| item.getType() == Material.IRON_SWORD || item.getType() == Material.STONE_SWORD
-				|| item.getType() == Material.WOODEN_SWORD);
+		if (Servers.isMC113OrNewer())
+			return item != null && (item.getType() == Material.DIAMOND_SWORD
+					|| item.getType() == Material.matchMaterial("GOLDEN_SWORD") || item.getType() == Material.IRON_SWORD
+					|| item.getType() == Material.STONE_SWORD || item.getType() == Material.WOODEN_SWORD);
+		else
+			return item != null && (item.getType() == Material.DIAMOND_SWORD
+					|| item.getType() == Material.matchMaterial("GOLDEN_SWORD") || item.getType() == Material.IRON_SWORD
+					|| item.getType() == Material.STONE_SWORD
+					|| item.getType() == Material.matchMaterial("WOOD_SWORD"));
 	}
 
 	public static boolean isPick(ItemStack item) {
-		return item != null && (item.getType() == Material.DIAMOND_PICKAXE || item.getType() == Material.GOLDEN_PICKAXE
-				|| item.getType() == Material.IRON_PICKAXE || item.getType() == Material.STONE_PICKAXE
-				|| item.getType() == Material.WOODEN_PICKAXE);
+		if (Servers.isMC113OrNewer())
+			return item != null && (item.getType() == Material.DIAMOND_PICKAXE
+					|| item.getType() == Material.matchMaterial("GOLDEN_PICKAXE")
+					|| item.getType() == Material.IRON_PICKAXE || item.getType() == Material.STONE_PICKAXE
+					|| item.getType() == Material.WOODEN_PICKAXE);
+		else
+			return item != null && (item.getType() == Material.DIAMOND_PICKAXE
+					|| item.getType() == Material.matchMaterial("GOLDEN_PICKAXE")
+					|| item.getType() == Material.IRON_PICKAXE || item.getType() == Material.STONE_PICKAXE
+					|| item.getType() == Material.matchMaterial("WOOD_PICKAXE"));
 	}
 
 	public static boolean isBow(ItemStack item) {
@@ -45,8 +64,7 @@ public class Materials {
 					|| block.getType() == Material.DARK_OAK_SIGN || block.getType() == Material.DARK_OAK_WALL_SIGN
 					|| block.getType() == Material.JUNGLE_SIGN || block.getType() == Material.JUNGLE_WALL_SIGN
 					|| block.getType() == Material.LEGACY_SIGN || block.getType() == Material.LEGACY_SIGN_POST
-					|| block.getType() == Material.LEGACY_WALL_SIGN 
-					|| block.getType() == Material.OAK_SIGN
+					|| block.getType() == Material.LEGACY_WALL_SIGN || block.getType() == Material.OAK_SIGN
 					|| block.getType() == Material.OAK_WALL_SIGN || block.getType() == Material.SPRUCE_SIGN
 					|| block.getType() == Material.SPRUCE_WALL_SIGN;
 		else if (Servers.isMC113OrNewer())
@@ -56,7 +74,7 @@ public class Materials {
 					|| block.getType() == Material.LEGACY_SIGN_POST || block.getType() == Material.LEGACY_WALL_SIGN;
 		else
 			return block.getType() == Material.matchMaterial("WALL_SIGN")
-					|| block.getType() == Material.matchMaterial("SIGN_POST")
+					// || block.getType() == Material.matchMaterial("SIGN_POST")
 					|| block.getType() == Material.matchMaterial("SIGN");
 	}
 
@@ -67,7 +85,7 @@ public class Materials {
 					|| block.getType() == Material.LEGACY_WALL_SIGN || block.getType() == Material.OAK_WALL_SIGN
 					|| block.getType() == Material.SPRUCE_WALL_SIGN;
 		else if (Servers.isMC113OrNewer())
-			return block.getType() == Material.LEGACY_WALL_SIGN;
+			return block.getType() == Material.matchMaterial("WALL_SIGN");
 		else
 			return block.getType() == Material.matchMaterial("WALL_SIGN");
 	}
@@ -87,7 +105,8 @@ public class Materials {
 					|| material == Material.matchMaterial("SIGN") || material == Material.LEGACY_SIGN
 					|| material == Material.LEGACY_SIGN_POST || material == Material.LEGACY_WALL_SIGN;
 		else
-			return material == Material.matchMaterial("WALL_SIGN") || material == Material.matchMaterial("SIGN_POST")
+			return material == Material.matchMaterial("WALL_SIGN")
+					// || material == Material.matchMaterial("SIGN_POST")
 					|| material == Material.matchMaterial("SIGN");
 	}
 
@@ -99,8 +118,7 @@ public class Materials {
 					|| material == Material.CREEPER_HEAD || material == Material.CREEPER_WALL_HEAD
 					|| material == Material.DRAGON_HEAD || material == Material.DRAGON_WALL_HEAD;
 		else
-			return material == Material.matchMaterial("SKULL_ITEM") || material == Material.matchMaterial("SKULL")
-					|| material == Material.matchMaterial("SKULL") || material == Material.matchMaterial("SKULL_ITEM");
+			return material == Material.matchMaterial("SKULL_ITEM") || material == Material.matchMaterial("SKULL");
 	}
 
 }
