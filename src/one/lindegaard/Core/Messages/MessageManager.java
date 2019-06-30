@@ -18,5 +18,9 @@ public class MessageManager {
 		else
 			return 0;
 	}
+	
+	public void setLastMessageTime(Player player, long time) {
+		lastMessage.put(player, time);
+	}
 
 }
