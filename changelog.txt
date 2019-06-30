@@ -1,5 +1,6 @@
 V0.1.0
-* Fixed bug when worldgroups.yml is created first time 
+* Fixed bug when worldgroups.yml is created first time
+* Added Support for Minecraft 1.12 
 V0.0.6
 * Forced download added
 V0.0.5
