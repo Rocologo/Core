@@ -199,7 +199,7 @@ public abstract class AutoConfig {
 						}
 
 						// LinkedHashMap
-						else if (field.getType().getComponentType().equals(LinkedHashMap.class)) {
+						else if (field.getType().equals(LinkedHashMap.class)) {
 							field.set(this, yml.getConfigurationSection(path).getValues(true));
 						}
 
