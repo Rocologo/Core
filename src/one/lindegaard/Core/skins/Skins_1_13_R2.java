@@ -21,7 +21,7 @@ public class Skins_1_13_R2 implements Skins {
 		GameProfile profile = playerNMS.getProfile();
 		Collection<Property> collection = profile.getProperties().get("textures");
 		Property property;
-		if (collection.isEmpty())
+		if (!collection.isEmpty())
 			property = collection.iterator().next();
 		else
 			property = new Property("texture", "", "");
