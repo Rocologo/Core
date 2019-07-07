@@ -1,5 +1,7 @@
 package one.lindegaard.Core.skins;
 
+import java.util.Collection;
+
 import org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
@@ -17,7 +19,12 @@ public class Skins_1_13_R2 implements Skins {
 	public String[] getSkin(Player player) {
 		EntityPlayer playerNMS = ((CraftPlayer) player).getHandle();
 		GameProfile profile = playerNMS.getProfile();
-		Property property = profile.getProperties().get("textures").iterator().next();
+		Collection<Property> collection = profile.getProperties().get("textures");
+		Property property;
+		if (collection.isEmpty())
+			property = collection.iterator().next();
+		else
+			property = new Property("texture", "", "");
 		String[] result = { property.getValue(), property.getValue() };
 		return result;
 	}
