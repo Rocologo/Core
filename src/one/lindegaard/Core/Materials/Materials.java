@@ -76,7 +76,7 @@ public class Materials {
 					|| block.getType() == Material.LEGACY_SIGN_POST || block.getType() == Material.LEGACY_WALL_SIGN;
 		else
 			return block.getType() == Material.matchMaterial("WALL_SIGN")
-					// || block.getType() == Material.matchMaterial("SIGN_POST")
+					|| block.getType() == Material.matchMaterial("SIGN_POST")
 					|| block.getType() == Material.matchMaterial("SIGN");
 	}
 
