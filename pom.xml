@@ -12,6 +12,13 @@
 	<url>https://github.com/Rocologo/Core</url>
 	<description>Core is a library with code shared between MobHunting and BagOfGold. </description>
 
+	<parent>
+		<groupId>one.lindegaard</groupId>
+		<artifactId>Main</artifactId>
+		<version>0.0.7</version>
+		<relativePath>../Main/pom.xml</relativePath>
+	</parent>
+
 	<scm>
 		<connection>scm:svn:https://github.com/Rocologo/Core.git</connection>
 		<developerConnection>scm:git:git://github.com/Rocologo</developerConnection>
@@ -21,13 +28,6 @@
 	<issueManagement>
 		<url>https://github.com/Rocologo/Core/issues</url>
 	</issueManagement>
-
-	<parent>
-		<groupId>one.lindegaard</groupId>
-		<artifactId>Main</artifactId>
-		<version>0.0.6</version>
-		<relativePath>../Main/pom.xml</relativePath>
-	</parent>
 
 	<!-- ********************************************************************** -->
 	<!-- ******************************** Build ******************************* -->
@@ -69,7 +69,6 @@
 	<!-- **************************** Dependencies **************************** -->
 	<!-- ********************************************************************** -->
 	<dependencies>
-	
 		<!-- SpigotMC -->
 		<dependency>
 			<groupId>org.spigotmc</groupId>
@@ -77,7 +76,6 @@
 			<version>${spigotmc_1_14_R1.version}</version>
 			<scope>provided</scope>
 		</dependency>
-
 	</dependencies>
 
 </project>
