@@ -7,8 +7,8 @@
 	<artifactId>Core</artifactId>
 	<packaging>jar</packaging>
 	<!-- <version>0.1.0</version> -->
-	<version>0.1.1-SNAPSHOT-B${build.number}</version>
-	<name>Core</name>
+	<version>0.1.2-SNAPSHOT-B${build.number}</version>
+	<name>Rocologo Core Library</name>
 	<url>https://github.com/Rocologo/Core</url>
 	<description>Core is a library with code shared between MobHunting and BagOfGold. </description>
 
@@ -25,7 +25,7 @@
 	<parent>
 		<groupId>one.lindegaard</groupId>
 		<artifactId>Main</artifactId>
-		<version>0.0.5</version>
+		<version>0.0.6</version>
 		<relativePath>../Main/pom.xml</relativePath>
 	</parent>
 
@@ -69,7 +69,14 @@
 	<!-- **************************** Dependencies **************************** -->
 	<!-- ********************************************************************** -->
 	<dependencies>
-
+	
+		<!-- SpigotMC -->
+		<dependency>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot-api</artifactId>
+			<version>${spigotmc_1_14_R1.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
 	</dependencies>
 
