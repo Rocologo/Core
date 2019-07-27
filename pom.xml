@@ -76,6 +76,5 @@
 			<version>${spigotmc_1_14_R1.version}</version>
 			<scope>provided</scope>
 		</dependency>
-	</dependencies>
-
+	</dependencies>		
 </project>
