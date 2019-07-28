@@ -76,5 +76,13 @@
 			<version>${spigotmc_1_14_R1.version}</version>
 			<scope>provided</scope>
 		</dependency>
-	</dependencies>		
+		<dependency>
+			<groupId>org.bukkit</groupId>
+			<artifactId>craftbukkit</artifactId>
+			<version>v1_14_R1</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/../lib/craftbukkit-1.14.4-R0.1-SNAPSHOT.jar</systemPath>
+		</dependency>
+		
+	</dependencies>
 </project>
