@@ -81,7 +81,7 @@
 			<artifactId>craftbukkit</artifactId>
 			<version>v1_14_R1</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/../lib/craftbukkit-1.14.4-R0.1-SNAPSHOT.jar</systemPath>
+			<systemPath>${basedir}/../Main/lib/craftbukkit-1.14.4-R0.1-SNAPSHOT.jar</systemPath>
 		</dependency>
 		
 	</dependencies>
